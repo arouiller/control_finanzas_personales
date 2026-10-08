@@ -1,0 +1,147 @@
+{
+ "_descripcion": "DATOS FICTICIOS para tests. Mismo esquema que tenencias.json real.",
+ "actualizado": "2025-04-30",
+ "moneda_valuacion": "USD",
+ "activos": [
+  {
+   "ticker": "SPY",
+   "nombre": "ETF S&P 500",
+   "tipo": "CEDEARs",
+   "grupo": "CEDEARs · Balanz",
+   "cantidad": 50,
+   "cotiza_en_pesos": true,
+   "valor_fijo_usd": false
+  },
+  {
+   "ticker": "XYZ",
+   "nombre": "Empresa XYZ (ficticia)",
+   "tipo": "CEDEARs",
+   "grupo": "CEDEARs · Balanz",
+   "cantidad": 20,
+   "cotiza_en_pesos": true,
+   "valor_fijo_usd": false
+  },
+  {
+   "ticker": "BTC",
+   "nombre": "Bitcoin",
+   "tipo": "Cripto",
+   "grupo": "Cripto · Nexo",
+   "cantidad": 0.0480868,
+   "cotiza_en_pesos": false,
+   "valor_fijo_usd": false
+  },
+  {
+   "ticker": "USDT",
+   "nombre": "Tether",
+   "tipo": "Cripto",
+   "grupo": "Cripto · Nexo",
+   "cantidad": 5049.29,
+   "cotiza_en_pesos": false,
+   "valor_fijo_usd": true
+  },
+  {
+   "ticker": "USD Balanz",
+   "nombre": "Dólar MEP en cuenta",
+   "tipo": "Liquidez",
+   "grupo": "Liquidez · USD",
+   "cantidad": 160.0,
+   "cotiza_en_pesos": false,
+   "valor_fijo_usd": true
+  },
+  {
+   "ticker": "USD billete",
+   "nombre": "Efectivo",
+   "tipo": "Liquidez",
+   "grupo": "Liquidez · USD",
+   "cantidad": 300.0,
+   "cotiza_en_pesos": false,
+   "valor_fijo_usd": true
+  }
+ ],
+ "mineros": {
+  "modelo": "Minero X",
+  "th_por_equipo": 100,
+  "cantidad": 2,
+  "fecha_compra": "2025-01-20",
+  "costo_usd": 6000,
+  "valor_inicial_pct": 75,
+  "valor_residual_pct": 25,
+  "vida_util_anios": 6,
+  "compras": [
+   {
+    "fecha": "2025-01-20",
+    "cantidad": 1,
+    "costo_usd": 3000
+   },
+   {
+    "fecha": "2025-03-01",
+    "cantidad": 1,
+    "costo_usd": 3000
+   }
+  ]
+ },
+ "inmuebles": [
+  {
+   "nombre": "Terreno Ejemplo",
+   "fecha_compra": "2025-03-20",
+   "costo_usd": 560,
+   "valor_usd": 600,
+   "fecha_valuacion": "2025-03-20",
+   "origen": "Ficticio"
+  },
+  {
+   "nombre": "Auto Ejemplo",
+   "fecha_compra": "2025-02-15",
+   "costo_usd": 115,
+   "valor_usd": 115,
+   "fecha_valuacion": "2025-02-15",
+   "depreciacion_anual_pct": 15,
+   "valor_nuevo_usd": 1315,
+   "origen": "Ficticio"
+  }
+ ],
+ "pasivos": [
+  {
+   "nombre": "Plan Ejemplo",
+   "bien": "Auto Ejemplo",
+   "tipo": "Plan de ahorro (12 cuotas)",
+   "cuotas_total": 12,
+   "alicuota_ars": 100000,
+   "valor_movil_ars": 5000000,
+   "fecha_valor_movil": "2025-04-01",
+   "mep_referencia": 1000,
+   "fecha_alta": "2025-02-15",
+   "cuotas_pagas": [
+    {
+     "cuota": 1,
+     "fecha": "2025-01-10"
+    },
+    {
+     "cuota": 2,
+     "fecha": "2025-02-10"
+    },
+    {
+     "cuota": 3,
+     "fecha": "2025-03-10"
+    },
+    {
+     "cuota": 4,
+     "fecha": "2025-04-10"
+    }
+   ],
+   "cuotas_canceladas": [
+    {
+     "cuota": 12,
+     "fecha": "2025-03-25",
+     "motivo": "anticipada"
+    },
+    {
+     "cuota": 11,
+     "fecha": "2025-04-20",
+     "motivo": "licitada",
+     "pagada_desde_cartera": true
+    }
+   ]
+  }
+ ]
+}

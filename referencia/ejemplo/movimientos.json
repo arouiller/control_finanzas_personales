@@ -1,0 +1,180 @@
+{
+ "_descripcion": "DATOS FICTICIOS para tests. Mismo esquema que movimientos.json real.",
+ "movimientos": [
+  {
+   "fecha": "2025-01-01",
+   "tipo": "Saldo inicial",
+   "activo": "USDT",
+   "cantidad": 5000,
+   "usd": 5000,
+   "flujo_usd": 5000,
+   "estimado": true,
+   "nota": "Ficticio: saldo inicial estimado"
+  },
+  {
+   "fecha": "2025-01-01",
+   "tipo": "Saldo inicial",
+   "activo": "BTC",
+   "cantidad": 0.05,
+   "usd": 4500.0,
+   "flujo_usd": 4500.0,
+   "estimado": true,
+   "nota": "Ficticio: saldo inicial estimado"
+  },
+  {
+   "fecha": "2025-01-10",
+   "tipo": "Compra",
+   "activo": "SPY",
+   "cantidad": 100,
+   "usd": 1000.0,
+   "flujo_usd": 1000.0,
+   "nota": "Ficticio: compra en pesos (aporte)"
+  },
+  {
+   "fecha": "2025-01-15",
+   "tipo": "Compra",
+   "activo": "XYZ",
+   "cantidad": 50,
+   "usd": 500.0,
+   "nota": "Ficticio: compra con USD Balanz (pase interno)"
+  },
+  {
+   "fecha": "2025-01-15",
+   "tipo": "Pago",
+   "activo": "USD Balanz",
+   "cantidad": -500.0,
+   "usd": 500.0,
+   "nota": "Contrapartida de la compra de XYZ"
+  },
+  {
+   "fecha": "2025-01-25",
+   "tipo": "Venta",
+   "activo": "SPY",
+   "cantidad": -20,
+   "usd": 230.0,
+   "flujo_usd": -230.0,
+   "destino": "Mineros",
+   "nota": "Ficticio: venta en pesos para pagar mineros"
+  },
+  {
+   "fecha": "2025-02-01",
+   "tipo": "Minería",
+   "activo": "BTC",
+   "cantidad": 0.002,
+   "usd": 178.9,
+   "flujo_usd": 178.9,
+   "nota": "Ficticio: producción minera (aporte)"
+  },
+  {
+   "fecha": "2025-02-01",
+   "tipo": "Costo minería",
+   "activo": "USDT",
+   "cantidad": -300.0,
+   "usd": 300.0,
+   "flujo_usd": -300.0,
+   "nota": "Ficticio: luz y seguro (retiro)"
+  },
+  {
+   "fecha": "2025-02-05",
+   "tipo": "Conversión",
+   "activo": "BTC",
+   "cantidad": -0.004,
+   "usd": 349.29,
+   "nota": "Ficticio: BTC a USDT (pase interno)"
+  },
+  {
+   "fecha": "2025-02-05",
+   "tipo": "Cobro",
+   "activo": "USDT",
+   "cantidad": 349.29,
+   "usd": 349.29,
+   "nota": "Contrapartida de la conversión"
+  },
+  {
+   "fecha": "2025-02-10",
+   "tipo": "Venta",
+   "activo": "SPY",
+   "cantidad": -10,
+   "usd": 115.0,
+   "flujo_usd": -115.0,
+   "destino": "Auto Ejemplo",
+   "nota": "Ficticio: venta para el adelanto del auto"
+  },
+  {
+   "fecha": "2025-02-20",
+   "tipo": "Venta",
+   "activo": "XYZ",
+   "cantidad": -30,
+   "usd": 360.0,
+   "nota": "Ficticio: venta contra USD Balanz"
+  },
+  {
+   "fecha": "2025-02-20",
+   "tipo": "Cobro",
+   "activo": "USD Balanz",
+   "cantidad": 360.0,
+   "usd": 360.0,
+   "nota": "Contrapartida de la venta de XYZ"
+  },
+  {
+   "fecha": "2025-02-28",
+   "tipo": "Interés Nexo",
+   "activo": "BTC",
+   "cantidad": 8.68e-05,
+   "usd": 0.0,
+   "devengo_diario": {
+    "desde": "2025-02-01",
+    "por_dia": 3.1e-06
+   },
+   "nota": "Ficticio: interés diario de febrero"
+  },
+  {
+   "fecha": "2025-03-10",
+   "tipo": "Venta",
+   "activo": "SPY",
+   "cantidad": -30,
+   "usd": 360.0,
+   "flujo_usd": -360.0,
+   "destino": "Terreno Ejemplo",
+   "nota": "Ficticio: venta para el terreno"
+  },
+  {
+   "fecha": "2025-03-15",
+   "tipo": "Compra de bienes",
+   "activo": "USD Balanz",
+   "cantidad": -200.0,
+   "usd": 200.0,
+   "flujo_usd": -200.0,
+   "destino": "Terreno Ejemplo",
+   "nota": "Ficticio: pago del terreno con USD Balanz"
+  },
+  {
+   "fecha": "2025-04-01",
+   "tipo": "Aporte",
+   "activo": "USD billete",
+   "cantidad": 300.0,
+   "usd": 300.0,
+   "flujo_usd": 300.0,
+   "nota": "Ficticio: billetes que entran a la cartera"
+  },
+  {
+   "fecha": "2025-04-10",
+   "tipo": "Compra",
+   "activo": "SPY",
+   "cantidad": 10,
+   "usd": 125.0,
+   "flujo_usd": 125.0,
+   "nota": "Ficticio: compra en pesos"
+  },
+  {
+   "fecha": "2025-04-20",
+   "tipo": "Compra de bienes",
+   "activo": "USD Balanz",
+   "cantidad": -100.0,
+   "usd": 100.0,
+   "flujo_usd": -100.0,
+   "destino": "Auto Ejemplo",
+   "nota": "Ficticio: licitación de la cuota 11 pagada con USD Balanz"
+  }
+ ]
+}

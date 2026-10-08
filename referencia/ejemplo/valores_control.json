@@ -1,0 +1,465 @@
+{
+ "_descripcion": "Valores de control generados por calculo_referencia.py con los datos FICTICIOS de esta carpeta. tot = activos financieros; min = mineros; inm = bienes (terreno + auto); deu = pasivos; pat = patrimonio neto; capT/capP = capital neto (valor inicial + flujos acumulados); rend_* = rendimiento ponderado en el tiempo desde la primera fecha de la serie.",
+ "por_fecha": {
+  "2025-01-01": {
+   "tot": 10100.0,
+   "min": 0,
+   "inm": 0,
+   "deu": 0,
+   "pat": 10100.0,
+   "flow": 0,
+   "flowP": 0,
+   "capT": 10100.0,
+   "capP": 10100.0,
+   "rend_cartera_pct": 0,
+   "rend_patrimonio_pct": 0,
+   "posiciones": {
+    "BTC": 4500.0,
+    "USDT": 5000.0,
+    "USD Balanz": 600.0
+   }
+  },
+  "2025-01-10": {
+   "tot": 11481.92,
+   "min": 0,
+   "inm": 0,
+   "deu": 0,
+   "pat": 11481.92,
+   "flow": 1000.0,
+   "flowP": 1000.0,
+   "capT": 11100.0,
+   "capP": 11100.0,
+   "rend_cartera_pct": 3.78,
+   "rend_patrimonio_pct": 3.78,
+   "posiciones": {
+    "SPY": 1111.48,
+    "BTC": 4770.44,
+    "USDT": 5000.0,
+    "USD Balanz": 600.0
+   }
+  },
+  "2025-01-15": {
+   "tot": 11639.21,
+   "min": 0,
+   "inm": 0,
+   "deu": 0,
+   "pat": 11639.21,
+   "flow": 0,
+   "flowP": 0,
+   "capT": 11100.0,
+   "capP": 11100.0,
+   "rend_cartera_pct": 5.2,
+   "rend_patrimonio_pct": 5.2,
+   "posiciones": {
+    "SPY": 1100.4,
+    "XYZ": 610.85,
+    "BTC": 4827.97,
+    "USDT": 5000.0,
+    "USD Balanz": 100.0
+   }
+  },
+  "2025-01-20": {
+   "tot": 11579.46,
+   "min": 2250.0,
+   "inm": 0,
+   "deu": 0,
+   "pat": 13829.46,
+   "flow": 0,
+   "flowP": 3000,
+   "capT": 11100.0,
+   "capP": 14100.0,
+   "rend_cartera_pct": 4.66,
+   "rend_patrimonio_pct": -2.12,
+   "posiciones": {
+    "SPY": 1084.98,
+    "XYZ": 599.22,
+    "BTC": 4795.26,
+    "USDT": 5000.0,
+    "USD Balanz": 100.0
+   }
+  },
+  "2025-01-25": {
+   "tot": 11243.93,
+   "min": 2246.58,
+   "inm": 0,
+   "deu": 0,
+   "pat": 13490.5,
+   "flow": -230.0,
+   "flowP": -230.0,
+   "capT": 10870.0,
+   "capP": 13870.0,
+   "rend_cartera_pct": 3.71,
+   "rend_patrimonio_pct": -2.89,
+   "posiciones": {
+    "SPY": 862.6,
+    "XYZ": 596.14,
+    "BTC": 4685.18,
+    "USDT": 5000.0,
+    "USD Balanz": 100.0
+   }
+  },
+  "2025-01-31": {
+   "tot": 11076.56,
+   "min": 2242.47,
+   "inm": 0,
+   "deu": 0,
+   "pat": 13319.03,
+   "flow": 0,
+   "flowP": 0,
+   "capT": 10870.0,
+   "capP": 13870.0,
+   "rend_cartera_pct": 2.17,
+   "rend_patrimonio_pct": -4.12,
+   "posiciones": {
+    "SPY": 869.21,
+    "XYZ": 604.52,
+    "BTC": 4502.83,
+    "USDT": 5000.0,
+    "USD Balanz": 100.0
+   }
+  },
+  "2025-02-01": {
+   "tot": 10925.44,
+   "min": 2241.78,
+   "inm": 0,
+   "deu": 0,
+   "pat": 13167.22,
+   "flow": -121.1,
+   "flowP": 0.0,
+   "capT": 10748.9,
+   "capP": 13870.0,
+   "rend_cartera_pct": 1.89,
+   "rend_patrimonio_pct": -5.21,
+   "posiciones": {
+    "SPY": 869.21,
+    "XYZ": 604.52,
+    "BTC": 4651.71,
+    "USDT": 4700.0,
+    "USD Balanz": 100.0
+   }
+  },
+  "2025-02-05": {
+   "tot": 10836.65,
+   "min": 2239.05,
+   "inm": 0,
+   "deu": 0,
+   "pat": 13075.7,
+   "flow": 0,
+   "flowP": 0,
+   "capT": 10748.9,
+   "capP": 13870.0,
+   "rend_cartera_pct": 1.06,
+   "rend_patrimonio_pct": -5.87,
+   "posiciones": {
+    "SPY": 878.71,
+    "XYZ": 615.84,
+    "BTC": 4192.81,
+    "USDT": 5049.29,
+    "USD Balanz": 100.0
+   }
+  },
+  "2025-02-10": {
+   "tot": 10666.5,
+   "min": 2235.62,
+   "inm": 115.0,
+   "deu": 0,
+   "pat": 13017.12,
+   "flow": -115.0,
+   "flowP": 0.0,
+   "capT": 10633.9,
+   "capP": 13870.0,
+   "rend_cartera_pct": 0.55,
+   "rend_patrimonio_pct": -6.29,
+   "posiciones": {
+    "SPY": 771.08,
+    "XYZ": 624.39,
+    "BTC": 4121.74,
+    "USDT": 5049.29,
+    "USD Balanz": 100.0
+   }
+  },
+  "2025-02-15": {
+   "tot": 10675.45,
+   "min": 2232.2,
+   "inm": 1315.0,
+   "deu": 1000.0,
+   "pat": 13222.65,
+   "flow": 0,
+   "flowP": 0.0,
+   "capT": 10633.9,
+   "capP": 13870.0,
+   "rend_cartera_pct": 0.63,
+   "rend_patrimonio_pct": -4.82,
+   "posiciones": {
+    "SPY": 766.23,
+    "XYZ": 625.7,
+    "BTC": 4134.23,
+    "USDT": 5049.29,
+    "USD Balanz": 100.0
+   }
+  },
+  "2025-02-20": {
+   "tot": 10739.86,
+   "min": 2228.78,
+   "inm": 1312.3,
+   "deu": 1000.0,
+   "pat": 13280.93,
+   "flow": 0,
+   "flowP": 0.0,
+   "capT": 10633.9,
+   "capP": 13870.0,
+   "rend_cartera_pct": 1.24,
+   "rend_patrimonio_pct": -4.4,
+   "posiciones": {
+    "SPY": 753.94,
+    "XYZ": 246.72,
+    "BTC": 4229.91,
+    "USDT": 5049.29,
+    "USD Balanz": 460.0
+   }
+  },
+  "2025-02-28": {
+   "tot": 10982.3,
+   "min": 2223.3,
+   "inm": 1307.98,
+   "deu": 1000.0,
+   "pat": 13513.58,
+   "flow": 0,
+   "flowP": 0.0,
+   "capT": 10633.9,
+   "capP": 13870.0,
+   "rend_cartera_pct": 3.52,
+   "rend_patrimonio_pct": -2.72,
+   "posiciones": {
+    "SPY": 749.73,
+    "XYZ": 237.58,
+    "BTC": 4485.7,
+    "USDT": 5049.29,
+    "USD Balanz": 460.0
+   }
+  },
+  "2025-03-01": {
+   "tot": 11015.51,
+   "min": 4472.62,
+   "inm": 1307.44,
+   "deu": 1000.0,
+   "pat": 15795.57,
+   "flow": 0,
+   "flowP": 3000.0,
+   "capT": 10633.9,
+   "capP": 16870.0,
+   "rend_cartera_pct": 3.84,
+   "rend_patrimonio_pct": -7.89,
+   "posiciones": {
+    "SPY": 749.73,
+    "XYZ": 237.58,
+    "BTC": 4518.91,
+    "USDT": 5049.29,
+    "USD Balanz": 460.0
+   }
+  },
+  "2025-03-10": {
+   "tot": 10912.44,
+   "min": 4460.29,
+   "inm": 1662.58,
+   "deu": 900.0,
+   "pat": 16135.31,
+   "flow": -360.0,
+   "flowP": 100.0,
+   "capT": 10273.9,
+   "capP": 16970.0,
+   "rend_cartera_pct": 6.26,
+   "rend_patrimonio_pct": -6.49,
+   "posiciones": {
+    "SPY": 436.53,
+    "XYZ": 232.24,
+    "BTC": 4734.38,
+    "USDT": 5049.29,
+    "USD Balanz": 460.0
+   }
+  },
+  "2025-03-15": {
+   "tot": 10727.12,
+   "min": 4453.45,
+   "inm": 1859.88,
+   "deu": 900.0,
+   "pat": 16140.45,
+   "flow": -200.0,
+   "flowP": 0.0,
+   "capT": 10073.9,
+   "capP": 16970.0,
+   "rend_cartera_pct": 6.4,
+   "rend_patrimonio_pct": -6.46,
+   "posiciones": {
+    "SPY": 436.65,
+    "XYZ": 233.92,
+    "BTC": 4747.26,
+    "USDT": 5049.29,
+    "USD Balanz": 260.0
+   }
+  },
+  "2025-03-20": {
+   "tot": 10655.7,
+   "min": 4446.6,
+   "inm": 1897.18,
+   "deu": 900.0,
+   "pat": 16099.48,
+   "flow": 0,
+   "flowP": 0.0,
+   "capT": 10073.9,
+   "capP": 16970.0,
+   "rend_cartera_pct": 5.69,
+   "rend_patrimonio_pct": -6.7,
+   "posiciones": {
+    "SPY": 431.36,
+    "XYZ": 238.83,
+    "BTC": 4676.22,
+    "USDT": 5049.29,
+    "USD Balanz": 260.0
+   }
+  },
+  "2025-03-25": {
+   "tot": 10523.38,
+   "min": 4439.75,
+   "inm": 1894.48,
+   "deu": 800.0,
+   "pat": 16057.61,
+   "flow": 0,
+   "flowP": 100.0,
+   "capT": 10073.9,
+   "capP": 17070.0,
+   "rend_cartera_pct": 4.38,
+   "rend_patrimonio_pct": -7.52,
+   "posiciones": {
+    "SPY": 426.1,
+    "XYZ": 242.48,
+    "BTC": 4545.5,
+    "USDT": 5049.29,
+    "USD Balanz": 260.0
+   }
+  },
+  "2025-03-31": {
+   "tot": 10347.43,
+   "min": 4431.54,
+   "inm": 1891.24,
+   "deu": 800.0,
+   "pat": 15870.2,
+   "flow": 0,
+   "flowP": 0.0,
+   "capT": 10073.9,
+   "capP": 17070.0,
+   "rend_cartera_pct": 2.63,
+   "rend_patrimonio_pct": -8.6,
+   "posiciones": {
+    "SPY": 425.05,
+    "XYZ": 243.24,
+    "BTC": 4369.85,
+    "USDT": 5049.29,
+    "USD Balanz": 260.0
+   }
+  },
+  "2025-04-01": {
+   "tot": 10621.69,
+   "min": 4430.17,
+   "inm": 1890.7,
+   "deu": 800.0,
+   "pat": 16142.56,
+   "flow": 300.0,
+   "flowP": 300.0,
+   "capT": 10373.9,
+   "capP": 17370.0,
+   "rend_cartera_pct": 2.38,
+   "rend_patrimonio_pct": -8.76,
+   "posiciones": {
+    "SPY": 425.56,
+    "XYZ": 242.88,
+    "BTC": 4343.96,
+    "USDT": 5049.29,
+    "USD Balanz": 260.0,
+    "USD billete": 300.0
+   }
+  },
+  "2025-04-10": {
+   "tot": 10614.97,
+   "min": 4417.85,
+   "inm": 1885.84,
+   "deu": 700.0,
+   "pat": 16218.66,
+   "flow": 125.0,
+   "flowP": 225.0,
+   "capT": 10498.9,
+   "capP": 17595.0,
+   "rend_cartera_pct": 1.11,
+   "rend_patrimonio_pct": -9.6,
+   "posiciones": {
+    "SPY": 541.09,
+    "XYZ": 234.88,
+    "BTC": 4229.72,
+    "USDT": 5049.29,
+    "USD Balanz": 260.0,
+    "USD billete": 300.0
+   }
+  },
+  "2025-04-20": {
+   "tot": 10685.86,
+   "min": 4404.15,
+   "inm": 1880.44,
+   "deu": 600.0,
+   "pat": 16370.46,
+   "flow": -100.0,
+   "flowP": 0.0,
+   "capT": 10398.9,
+   "capP": 17595.0,
+   "rend_cartera_pct": 2.74,
+   "rend_patrimonio_pct": -8.76,
+   "posiciones": {
+    "SPY": 538.39,
+    "XYZ": 227.58,
+    "BTC": 4410.61,
+    "USDT": 5049.29,
+    "USD Balanz": 160.0,
+    "USD billete": 300.0
+   }
+  },
+  "2025-04-30": {
+   "tot": 10999.56,
+   "min": 4390.46,
+   "inm": 1875.04,
+   "deu": 600.0,
+   "pat": 16665.06,
+   "flow": 0,
+   "flowP": 0.0,
+   "capT": 10398.9,
+   "capP": 17595.0,
+   "rend_cartera_pct": 5.75,
+   "rend_patrimonio_pct": -7.11,
+   "posiciones": {
+    "SPY": 527.15,
+    "XYZ": 230.46,
+    "BTC": 4732.66,
+    "USDT": 5049.29,
+    "USD Balanz": 160.0,
+    "USD billete": 300.0
+   }
+  }
+ },
+ "costo_posiciones_abiertas": {
+  "SPY": {
+   "costo_usd": 525.0,
+   "costo_promedio": 10.5
+  },
+  "XYZ": {
+   "costo_usd": 200.0,
+   "costo_promedio": 10.0
+  },
+  "BTC": {
+   "costo_usd": 4318.98,
+   "costo_promedio": 89978.846154
+  }
+ },
+ "mineria": {
+  "btc_minado": 0.002,
+  "usd_al_cobrar": 178.9,
+  "costos_usd": 300.0
+ }
+}

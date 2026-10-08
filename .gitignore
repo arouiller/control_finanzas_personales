@@ -1,11 +1,7 @@
-# Directorios de datos
-datos/
-
-# Backups
-backups/
-
-# Logs
-logs/
+# Datos, backups y logs del usuario: solo en la raíz (cartera/datos/ es código y sí se versiona)
+/datos/
+/backups/
+/logs/
 *.log
 
 # Variables de entorno

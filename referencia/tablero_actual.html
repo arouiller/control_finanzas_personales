@@ -1,0 +1,861 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Mi cartera en dólares</title>
+<script>
+  // tema antes de pintar, igual que en Radar de patrones (claro, atenuado u oscuro)
+  (()=>{let t=null;try{t=localStorage.getItem('tema')}catch(e){}
+  if(!['light','dim','dark'].includes(t))t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  document.documentElement.dataset.theme=t})();
+</script>
+<style>
+:root{color-scheme:light;--bg:#f9f9f7;--panel:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--line:#e4e3de;--grid:#ecebe6;--axis:#c3c2b7;--hover:rgba(11,11,11,.04);--accent:#2a78d6;--accent-soft:rgba(42,120,214,.12);--up:#1baf7a;--down:#e34948;--c-googl:#2a78d6;--c-meli:#eda100;--c-msft:#4a3aa7;--c-spy:#e87ba4;--c-avgo:#13998a;--c-aapl:#64748b;--c-nke:#f97316;--c-tsla:#b91c1c;--c-tm:#64748b;--c-amd:#059669;--c-vist:#0e7490;--c-qqq:#7c3aed;--c-nvda:#65a30d;--c-meta:#1d4ed8;--c-amzn:#d97706;--c-ypfd:#0369a1;--c-ggal:#c2410c;--c-ko:#dc2626;--c-nflx:#b91c1c;--c-brkb:#4d7c0f;--c-spot:#16a34a;--c-mcd:#ca8a04;--c-btc:#eb6834;--c-usdt:#a9a79f;--c-usdbalanz:#1baf7a;--c-usdbillete:#86c7a4;--c-s21:#a8822e;--t-inm:#6b5b95;--c-terreno:#8a7ab5;--c-fiatfastback:#4f7cac;--t-arg:#4f8a3c;--t-ced:#3b4f7a;--t-cri:#c4572a;--t-prod:#8a6a26;--t-liq:#178a62;--sans:system-ui,-apple-system,"Segoe UI",sans-serif;--cond:var(--sans);--mono:var(--sans);--alto-cab:0px;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0d0d0d;--panel:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--line:#2c2c2a;--grid:#242423;--axis:#383835;--hover:rgba(255,255,255,.05);--accent:#3987e5;--accent-soft:rgba(57,135,229,.18);--up:#199e70;--down:#e66767;--c-googl:#3987e5;--c-meli:#c98500;--c-msft:#9085e9;--c-spy:#d55181;--c-avgo:#2bb3a3;--c-aapl:#94a3b8;--c-nke:#fb923c;--c-tsla:#f87171;--c-tm:#94a3b8;--c-amd:#34d399;--c-vist:#22d3ee;--c-qqq:#a78bfa;--c-nvda:#a3e635;--c-meta:#60a5fa;--c-amzn:#fbbf24;--c-ypfd:#38bdf8;--c-ggal:#fb923c;--c-ko:#f87171;--c-nflx:#ef4444;--c-brkb:#bef264;--c-spot:#4ade80;--c-mcd:#facc15;--c-btc:#d95926;--c-usdt:#85837c;--c-usdbalanz:#199e70;--c-usdbillete:#7fbf9b;--c-s21:#b8995a;--t-inm:#a99bd6;--c-terreno:#8f80c4;--c-fiatfastback:#7aa3d1;--t-arg:#80c06c;--t-ced:#7f9fd0;--t-cri:#e07a45;--t-prod:#c9a96b;--t-liq:#4cbf8f;}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0d0d0d;--panel:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--line:#2c2c2a;--grid:#242423;--axis:#383835;--hover:rgba(255,255,255,.05);--accent:#3987e5;--accent-soft:rgba(57,135,229,.18);--up:#199e70;--down:#e66767;--c-googl:#3987e5;--c-meli:#c98500;--c-msft:#9085e9;--c-spy:#d55181;--c-avgo:#2bb3a3;--c-aapl:#94a3b8;--c-nke:#fb923c;--c-tsla:#f87171;--c-tm:#94a3b8;--c-amd:#34d399;--c-vist:#22d3ee;--c-qqq:#a78bfa;--c-nvda:#a3e635;--c-meta:#60a5fa;--c-amzn:#fbbf24;--c-ypfd:#38bdf8;--c-ggal:#fb923c;--c-ko:#f87171;--c-nflx:#ef4444;--c-brkb:#bef264;--c-spot:#4ade80;--c-mcd:#facc15;--c-btc:#d95926;--c-usdt:#85837c;--c-usdbalanz:#199e70;--c-usdbillete:#7fbf9b;--c-s21:#b8995a;--t-inm:#a99bd6;--c-terreno:#8f80c4;--c-fiatfastback:#7aa3d1;--t-arg:#80c06c;--t-ced:#7f9fd0;--t-cri:#e07a45;--t-prod:#c9a96b;--t-liq:#4cbf8f;}
+:root[data-theme="dim"]{color-scheme:dark;--bg:#3a3c40;--panel:#45474c;--ink:#f4f3ef;--ink2:#d3d2cb;--muted:#aaa9a3;--line:#54565b;--grid:#4e5055;--axis:#6b6d72;--hover:rgba(255,255,255,.07);--accent:#5ea3f2;--accent-soft:rgba(94,163,242,.2);--up:#2dbd8a;--down:#f58080;--c-googl:#5ea3f2;--c-meli:#e3a414;--c-msft:#aea5f3;--c-spy:#ee7ba3;--c-avgo:#3fc4b3;--c-aapl:#b4c0cf;--c-nke:#fdba74;--c-tsla:#fca5a5;--c-tm:#cbd5e1;--c-amd:#6ee7b7;--c-vist:#67e8f9;--c-qqq:#c4b5fd;--c-nvda:#bef264;--c-meta:#93c5fd;--c-amzn:#fcd34d;--c-ypfd:#7dd3fc;--c-ggal:#fdba74;--c-ko:#fca5a5;--c-nflx:#f87171;--c-brkb:#d9f99d;--c-spot:#86efac;--c-mcd:#fde047;--c-btc:#ef7d44;--c-usdt:#a2a19a;--c-usdbalanz:#2dbd8a;--c-usdbillete:#9fd3b5;--c-s21:#cfae6e;--t-inm:#bdb0e6;--c-terreno:#a596d6;--c-fiatfastback:#9bbbe0;--t-arg:#8fcc7a;--t-ced:#8fb0e0;--t-cri:#ef8d5a;--t-prod:#d6b77a;--t-liq:#5fd0a0;}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 var(--sans);}
+header.top{display:grid;grid-template-columns:auto minmax(180px,1fr) auto;align-items:center;gap:10px 22px;padding:12px 20px 12px 24px;position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--line);}
+header.top .hres{min-width:0;}
+.desg{display:flex;flex-wrap:wrap;gap:6px 0;margin-top:6px;}
+.desg .dg{display:flex;flex-direction:column;gap:1px;padding:0 12px;border-left:1px solid var(--line);}
+.desg .dg:first-child{padding-left:0;border-left:0;}
+.desg .dg span{font-size:12px;color:var(--muted);}
+.desg .dg strong{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;}
+.desg .dg em{font-style:normal;font-size:12px;color:var(--ink2);font-variant-numeric:tabular-nums;}
+.rend{font-size:12.5px;color:var(--muted);margin-top:8px;font-variant-numeric:tabular-nums;}
+.rend b{font-weight:600;}
+header.top .desde{grid-column:2;grid-row:1;align-self:center;display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:0 0 16px;min-width:180px;max-width:520px;width:100%;justify-self:center;}header.top .desde label{font-size:13px;}
+header.top .cabDer{grid-row:1;grid-column:3;justify-self:end;align-self:start;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px;}
+header.top h1{font-size:20px;margin:0 0 2px;font-weight:650;}
+header.top .hsub{color:var(--ink2);font-size:14px;}
+.grupo{display:flex;flex-wrap:wrap;gap:6px;}
+.grupo button{font:inherit;font-size:13px;color:var(--ink2);background:transparent;border:1px solid var(--line);border-radius:6px;padding:4px 8px;cursor:pointer;}
+.grupo button:hover{background:var(--hover);}
+.grupo button[aria-pressed="true"]{color:var(--ink);border-color:var(--axis);background:var(--panel);}
+.layout{display:grid;grid-template-columns:204px minmax(0,1fr);}
+.contenido{min-width:0;padding:16px 20px 40px;display:flex;flex-direction:column;gap:16px;}
+.resumen{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px 40px;padding:16px 18px;}
+.eyebrow{font-size:12.5px;color:var(--ink2);}
+h1,h2{font-family:var(--sans);font-weight:600;margin:0;text-wrap:balance;}
+h2{font-size:16px;}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;}
+
+.total{font-size:clamp(26px,3.2vw,34px);line-height:1.15;font-weight:650;letter-spacing:-.02em;margin-top:1px;font-variant-numeric:tabular-nums;}
+.sub{font-family:var(--mono);font-size:14px;margin-top:2px;}
+.kpis{display:grid;grid-template-columns:repeat(4,auto);gap:6px 30px;}
+.kpi span{display:block;font-size:12px;color:var(--muted);}
+.kpi strong{font-weight:600;font-size:15px;font-variant-numeric:tabular-nums;}
+.up{color:var(--up);} .down{color:var(--down);}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);}
+.legend{font-family:var(--mono);font-size:12.5px;color:var(--muted);min-height:18px;display:flex;flex-wrap:wrap;gap:4px 14px;}
+.legend b{color:var(--ink);font-weight:500;}
+.seg{display:flex;flex-wrap:wrap;gap:4px;}
+.seg button{font:inherit;font-size:13px;color:var(--ink2);background:transparent;border:1px solid var(--line);border-radius:6px;padding:4px 8px;cursor:pointer;}
+.seg button:hover{background:var(--hover);}
+.seg button[aria-pressed="true"]{color:var(--ink);border-color:var(--axis);background:var(--bg);}
+.seg button:focus-visible{outline:2px solid var(--ink2);outline-offset:1px;}
+.chart{height:min(52vh,440px);min-height:300px;position:relative;}
+.hint{position:absolute;z-index:5;pointer-events:none;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px 9px;font-size:12px;line-height:1.45;box-shadow:0 4px 14px rgba(0,0,0,.12);white-space:nowrap;}
+.hint b{font-weight:600;}
+.hint.lgh{white-space:nowrap;font-family:var(--sans);}.hint.lgh>span{display:block;}.hint.lgh>span:first-child{color:var(--muted);margin-bottom:2px;}
+.hint .num{font-family:var(--mono);}
+.evwrap{display:grid;grid-template-columns:minmax(0,1fr) 236px;}
+.evlist{border-left:1px solid var(--line);padding:8px 8px 10px;display:flex;flex-direction:column;gap:2px;max-height:min(52vh,440px);min-height:300px;overflow-y:auto;}
+.evlist .evh{font-size:11.5px;color:var(--muted);padding:2px 8px 6px;}
+.evlist button{font:inherit;color:var(--ink);background:transparent;border:1px solid transparent;border-radius:7px;padding:6px 8px;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2px 8px;text-align:left;}
+.evlist button:hover{background:var(--hover);}
+.evlist button[aria-pressed="true"]{background:var(--bg);border-color:var(--axis);}
+.evlist button:focus-visible{outline:2px solid var(--ink2);outline-offset:1px;}
+.evlist .tk2{font-weight:600;font-size:13px;}
+.evlist .nm{grid-column:2;font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.evlist .vl{grid-column:3;grid-row:1;text-align:right;font-size:12.5px;font-variant-numeric:tabular-nums;}
+.evlist .vr{grid-column:3;grid-row:2;text-align:right;font-size:11.5px;font-variant-numeric:tabular-nums;}
+.evlist .sep{height:1px;background:var(--line);margin:4px 6px;}
+#evkey i{display:inline-block;width:14px;height:0;border-top:1px solid var(--ink);vertical-align:middle;margin-right:4px;}
+#evkey{color:var(--muted);}#evkey b{font-weight:500;color:var(--ink2);}#evkey .sq{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:4px;}
+@media (max-width:760px){.evwrap{grid-template-columns:minmax(0,1fr);}.evlist{border-left:0;border-top:1px solid var(--line);max-height:none;min-height:0;flex-direction:row;flex-wrap:wrap;gap:6px;padding:10px 12px;}.evlist .evh{width:100%;padding:0 2px;}.evlist .sep{display:none;}.evlist button{border-color:var(--line);grid-template-columns:auto auto auto;}.evlist .nm,.evlist .vr{display:none;}}
+.selband{position:absolute;top:0;z-index:2;pointer-events:none;background:color-mix(in srgb,var(--accent) 13%,transparent);border-left:1px solid color-mix(in srgb,var(--accent) 60%,transparent);border-right:1px solid color-mix(in srgb,var(--accent) 60%,transparent);}
+.selcard{position:absolute;z-index:6;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 22px rgba(0,0,0,.18);padding:8px 10px 9px;font-size:12px;line-height:1.45;min-width:230px;max-width:min(320px,calc(100% - 16px));}
+.selcard .sh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px;}
+.selcard .sh b{font-weight:600;font-size:12.5px;}
+.selcard .sh button{border:0;background:transparent;color:var(--muted);font-size:17px;line-height:1;cursor:pointer;padding:0 2px;}
+.selcard dl{display:grid;grid-template-columns:auto auto;gap:3px 14px;margin:0;}
+.selcard dt{color:var(--muted);}.selcard dt b{color:var(--ink);font-weight:600;}
+.selcard dd{margin:0;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+#c1.dragging .hint{display:none!important;}#c1{cursor:crosshair;}
+.upd .vivo{font:inherit;font-size:12px;color:var(--ink2);background:transparent;border:1px solid var(--line);border-radius:6px;padding:1px 7px;margin-left:6px;cursor:pointer;vertical-align:baseline;}
+.upd .vivo:hover:not(:disabled){background:var(--hover);color:var(--ink);}.upd .vivo:disabled{opacity:.45;cursor:default;}
+.upd .vivoMsg{margin-left:6px;}.upd .vivoMsg.bad{color:var(--down);}
+.chart.small{height:min(40vh,340px);min-height:260px;}
+.tablewrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:13.5px;}
+th{font-size:12.5px;color:var(--muted);font-weight:500;text-align:right;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap;}
+td{padding:11px 14px;border-bottom:1px solid var(--grid);text-align:right;white-space:nowrap;font-family:var(--mono);font-variant-numeric:tabular-nums;}
+th:first-child,td:first-child{text-align:left;}
+tr:last-child td{border-bottom:0;}
+tfoot td{border-top:1px solid var(--line);font-weight:500;}
+.tk{display:flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;}
+.dot{width:9px;height:9px;border-radius:50%;flex:none;}
+.weight{display:flex;align-items:center;justify-content:flex-end;gap:8px;}
+.weight i{display:block;height:6px;border-radius:3px;background:var(--wc);opacity:.8;}
+.stack{display:flex;height:10px;border-radius:5px;overflow:hidden;margin:14px 14px 4px;}
+.stack div{height:100%;}
+td.mv{font-family:var(--sans);text-align:left;white-space:normal;min-width:220px;}
+td.mv b{display:block;font-weight:500;}
+td.mv small{display:block;color:var(--muted);font-size:12px;line-height:1.4;margin-top:2px;}
+td.acum{color:var(--ink2);}
+td.det{font-family:var(--sans);color:var(--muted);white-space:normal;min-width:200px;text-align:left;}
+.comp-top{display:flex;height:14px;border-radius:7px;overflow:hidden;margin:16px 16px 6px;gap:2px;}
+.comp-top div{height:100%;}
+.comp-leg{display:flex;flex-wrap:wrap;gap:6px 20px;padding:4px 16px 14px;font-size:13px;color:var(--muted);}
+.comp-leg b{color:var(--ink);font-weight:600;}
+.comp-leg .num{color:var(--ink);}
+.sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;flex:none;}
+.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));border-top:1px solid var(--line);}
+.group{padding:16px;display:flex;flex-direction:column;gap:12px;border-right:1px solid var(--line);}
+.group:last-child{border-right:0;}
+.ghead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.gname{font-family:var(--cond);font-weight:600;font-size:17px;display:flex;align-items:center;}
+.gplat{font-size:12px;color:var(--muted);margin-left:8px;font-family:var(--sans);font-weight:500;}
+.gval{font-family:var(--mono);font-size:15px;font-weight:500;}
+.gval span{color:var(--muted);font-size:12.5px;margin-left:6px;}
+.gbar{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px;}
+.gbar div{height:100%;}
+.glist{display:grid;grid-template-columns:auto 1fr auto auto;gap:7px 14px;align-items:center;font-size:13px;}
+.glist .h{font-size:12px;color:var(--muted);}
+.glist .r{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;}
+.glist .n{font-weight:600;display:flex;align-items:center;gap:8px;}
+.glist .sub{color:var(--muted);font-size:12px;}
+@media (max-width:700px){.group{border-right:0;border-bottom:1px solid var(--line);}.group:last-child{border-bottom:0;}}
+.tm{position:relative;height:clamp(460px,52vw,600px);margin:4px 10px 16px;}
+@media (max-width:560px){.tm{height:500px;}}
+.tm .sup{position:absolute;height:20px;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink2);border-bottom:2px solid var(--axis);white-space:nowrap;overflow:hidden;}
+.tm .sup em{font-style:normal;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums;}
+.cblk{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;width:100%;}.cbt{font-weight:600;color:var(--ink2);min-width:230px;}.cbt .num{font-weight:500;color:var(--muted);}
+.tm .g{position:absolute;box-sizing:border-box;border:2px solid var(--gc);border-radius:10px;background:color-mix(in srgb,var(--gc) 14%,var(--panel));overflow:hidden;}
+.tm .gl{position:absolute;left:0;top:0;right:0;height:28px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 10px;background:var(--gc);color:var(--panel);font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;}
+.tm .gl em{font-style:normal;font-family:var(--mono);letter-spacing:0;font-weight:500;}
+.tm .c{position:absolute;box-sizing:border-box;border:2px solid var(--panel);border-radius:6px;padding:8px 10px;overflow:hidden;display:flex;flex-direction:column;gap:1px;cursor:default;}
+.tm .c b{font-family:var(--cond);font-size:clamp(14px,1.8vw,20px);font-weight:600;line-height:1.1;}
+.tm .c span{font-family:var(--mono);font-size:12px;opacity:.92;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.tm .c:focus-visible{outline:2px solid var(--ink);outline-offset:-2px;}
+.subbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px 0;border-top:1px solid var(--line);}
+.subbar h3{margin:0;font-weight:600;font-size:15px;}
+.chart.mix{height:min(34vh,280px);min-height:220px;}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border-bottom:1px solid var(--line);}
+.kgrid div{background:var(--panel);padding:14px 16px;display:flex;flex-direction:column;gap:3px;}
+.kgrid span{font-size:12px;color:var(--muted);}
+.kgrid strong{font-weight:600;font-size:18px;font-variant-numeric:tabular-nums;}
+.kgrid strong b{font-weight:500;}
+.kgrid em{font-style:normal;font-size:12px;color:var(--muted);}
+.est{display:inline-block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--t-prod);border:1px solid var(--t-prod);border-radius:4px;padding:0 5px;margin-left:6px;vertical-align:1px;}
+.patr{font-family:var(--mono);font-size:13.5px;color:var(--muted);margin-top:2px;}
+.patr b{color:var(--ink);font-weight:500;}
+.mtext{padding:14px 16px;font-size:13px;line-height:1.6;color:var(--muted);max-width:none;display:flex;flex-direction:column;gap:8px;}
+.mtext b{color:var(--ink);font-weight:500;}
+.mtext a{color:var(--accent);}
+.tm .c.hatch{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.14) 0 6px,transparent 6px 12px);}
+.upd{font-size:12px;color:var(--muted);margin-top:1px;}
+.upd b{color:var(--ink);font-weight:500;font-family:var(--mono);}
+tr.grp{cursor:pointer;}tr.grp:hover td{background:var(--hover);}tr.grp .car{display:inline-block;width:14px;transition:transform .15s;}tr.grp.open .car{transform:rotate(90deg);}tr.grp .gn{letter-spacing:0;text-transform:none;}
+tr.grp td:not(:first-child){font-family:var(--sans);font-size:13px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:500;}
+.wsub{display:block;font-size:11.5px;color:var(--muted);margin-top:1px;}
+tr.grp td{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--bg);padding-block:7px;border-bottom:1px solid var(--line);}
+.classes{display:flex;flex-wrap:wrap;gap:4px 16px;padding:6px 14px 2px;font-size:12.5px;color:var(--muted);}
+.classes b{color:var(--ink);font-family:var(--mono);font-weight:500;}
+.live{display:inline-block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:1px;}
+.grid2{display:grid;grid-template-columns:1fr;gap:22px;}
+.note{font-size:12.5px;color:var(--muted);max-width:none;line-height:1.5;margin:0;}
+.note b{color:var(--ink);font-weight:500;}
+.filt{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:12px;color:var(--muted);}
+.filt label{display:flex;align-items:center;gap:6px;font-size:12.5px;}
+.filt select{font:inherit;font-size:13px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:5px 8px;text-transform:none;letter-spacing:0;cursor:pointer;}
+.filt select:focus-visible{outline:2px solid var(--ink2);outline-offset:1px;}
+.fcount{font-family:var(--mono);font-size:12px;}
+.mixsel{padding:10px 14px 0;}
+.mixsel button{display:inline-flex;align-items:center;}
+.mixsel button[aria-pressed="false"]{color:var(--muted);opacity:.75;}
+.mixsel button[aria-pressed="true"]{color:var(--ink);background:var(--bg);border-color:var(--axis);}
+.mixsel button.all{color:var(--accent);}
+tr.fm{cursor:pointer;}tr.fm:hover td{background:var(--hover);}tr.fm td:first-child::before{content:"▸";display:inline-block;width:14px;color:var(--muted);transition:transform .15s;}tr.fm.open td:first-child::before{transform:rotate(90deg);}
+tr.fo td{font-size:12.5px;background:var(--bg);color:var(--ink2);padding-block:6px;}tr.fo td:first-child{padding-left:30px;font-family:var(--sans);white-space:normal;min-width:300px;}tr.fo small{display:block;color:var(--muted);font-size:11.5px;max-width:60ch;}
+.sw-ap{color:var(--up)}.sw-rv{color:var(--down)}.sw-rc{color:var(--t-cri)}.sw-rm{color:var(--t-prod)}.sw-rt{color:var(--t-inm)}
+.desde{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:4px 14px;padding:12px 16px 16px;}
+.desde label{font-size:13px;color:var(--ink2);white-space:nowrap;}.desde label b{color:var(--ink);font-weight:600;}
+.desde .rail{position:relative;display:flex;align-items:center;}.desde input[type=range]{width:100%;margin:0;accent-color:var(--accent);cursor:pointer;}
+.desde .tick{position:absolute;top:calc(100% + 2px);transform:translateX(-50%);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.infobtn{display:flex;align-items:center;gap:7px;margin-top:10px;padding:7px 8px 7px 11px;border:0;background:transparent;color:var(--muted);font:inherit;font-size:13px;cursor:pointer;border-radius:6px;text-align:left;}
+.infobtn:hover{color:var(--ink);background:var(--hover);}
+.dlgCalc{width:min(760px,calc(100vw - 32px));max-height:85vh;padding:0;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,.25);}
+.dlgCalc::backdrop{background:rgba(0,0,0,.35);}
+.dlgCalc .dcab{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 6px;position:sticky;top:0;background:var(--panel);}
+.dlgCalc h2{font-size:16px;}.dlgCalc .dcab button{border:0;background:transparent;font-size:22px;line-height:1;color:var(--muted);cursor:pointer;padding:2px 6px;}
+.dlgCalc .dcuerpo{padding:4px 18px 18px;font-size:13px;line-height:1.6;color:var(--ink2);}.dlgCalc .dcuerpo p{margin:0 0 10px;}.dlgCalc b{color:var(--ink);font-weight:600;}
+.tabs{display:flex;flex-direction:column;gap:1px;padding:8px 8px 16px 12px;border-right:1px solid var(--line);position:sticky;top:var(--alto-cab);align-self:start;max-height:calc(100vh - var(--alto-cab));overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;}
+.tabs button{display:flex;align-items:baseline;gap:6px;white-space:nowrap;width:100%;font:inherit;font-size:13.5px;border:0;border-left:3px solid transparent;border-radius:0 6px 6px 0;padding:7px 8px;background:transparent;color:var(--ink2);text-align:left;cursor:pointer;}
+.tabs button:hover{background:var(--hover);}
+.tabs button[aria-selected="true"]{color:var(--ink);border-left-color:var(--ink);background:var(--panel);}
+.tabs button:focus-visible{outline:2px solid var(--ink2);outline-offset:-2px;}
+@media (max-width:900px){header.top{grid-template-columns:minmax(0,1fr);padding:16px 16px 8px;position:static;}header.top .cabDer,header.top .hres,header.top .desde{grid-column:1;grid-row:auto;}header.top .desde{padding:4px 0 12px;}.desg{gap:10px 0;}.desg .dg{padding:0 18px 0 0;border-left:0;}header.top .cabDer{justify-self:start;order:-1;}
+.layout{display:block;}.tabs{flex-direction:row;gap:2px;padding:6px 16px 0;position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line);overflow-x:auto;overflow-y:hidden;}
+.infobtn{margin:0 0 2px;white-space:nowrap;}.tabs button{width:auto;border-left:0;border-bottom:2px solid transparent;border-radius:6px 6px 0 0;padding:8px 12px;}.tabs button[aria-selected="true"]{border-bottom-color:var(--ink);}
+.contenido{padding:12px 16px 32px;}}
+@media (max-width:700px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr));}}
+</style>
+<header class="top" id="cab">
+  <div class="hres">
+    <div class="total" id="total">—</div>
+    <div class="desg" id="desg"></div>
+    <div class="rend" id="rend"></div>
+    <div class="upd" id="upd"></div>
+  </div>
+  <div class="desde" id="gfrom"></div>
+  <div class="cabDer">
+    <div class="grupo" id="temas" role="group" aria-label="Tema">
+      <button data-tema="light">☀ Claro</button><button data-tema="dim">◐ Atenuado</button><button data-tema="dark">☾ Oscuro</button>
+    </div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Secciones" aria-orientation="vertical">
+    <button role="tab" data-tab="composicion">Evolución y composición</button>
+    <button role="tab" data-tab="flujos">Aportes y retiros</button>
+    <button role="tab" data-tab="base100">Cada activo, base 100</button>
+    <button role="tab" data-tab="movimientos">Movimientos</button>
+    <button role="tab" data-tab="produccion">Producción minera</button>
+    <button role="tab" data-tab="mineros">Otros activos</button>
+    <button type="button" class="infobtn" id="infoBtn" title="Cómo se calcula"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 7.2v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="4.9" r=".9" fill="currentColor"/></svg>Cómo se calcula</button>
+  </nav>
+<div class="contenido">
+  <section class="panel" data-pane="composicion" role="tabpanel">
+    <div class="bar">
+      <div><h2 id="evh">Evolución del valor en USD</h2><div class="eyebrow" style="margin-top:2px">Al cierre de cada mes · el último punto es la fecha actual<span id="evkey"></span> · <span style="color:var(--muted)">arrastrá sobre el gráfico para analizar un período</span></div></div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px"><div class="seg" id="evmode"></div></div>
+    </div>
+    <div class="bar" style="border-bottom:0;padding-block:8px 0"><div class="legend" id="lg"></div></div>
+    <div class="evwrap"><div class="chart" id="c1"></div><aside class="evlist" id="evlist" aria-label="Activos financieros del mes en curso"></aside></div>
+  </section>
+
+  <section class="panel" data-pane="composicion" role="tabpanel">
+    <div class="bar"><div><h2>Composición del patrimonio</h2><div class="eyebrow" style="margin-top:2px">% sobre US$ <span id="patlbl"></span> · <span id="patlbl2"></span></div></div><div style="display:flex;flex-wrap:wrap;gap:10px"><div class="seg" id="compval" aria-label="Valor del auto"></div><div class="seg" id="compsel" aria-label="Grupos a mostrar"></div></div></div>
+    <div class="comp-leg" id="cleg" hidden></div>
+    <div class="tm" id="tm" role="img" aria-label="Mapa del patrimonio por tipo y activo"></div>
+  </section>
+
+  <section class="panel" data-pane="composicion" role="tabpanel">
+    <div class="bar"><div><h2>Posiciones</h2><div class="eyebrow" style="margin-top:2px">Variaciones en USD · de mayor a menor valor</div></div><div class="seg" id="posmode"></div></div>
+    <div class="classes" id="classes"></div>
+    <div class="tablewrap"><table id="tbl"></table></div>
+  </section>
+
+  <section class="panel" data-pane="composicion" role="tabpanel">
+    <div class="bar"><div><h2>Cómo cambió la composición</h2><div class="eyebrow" style="margin-top:2px">Al cierre de cada mes · el último punto es la fecha actual · <span id="mixnote"></span></div></div><div style="display:flex;flex-wrap:wrap;gap:10px"><div class="seg" id="mixview"></div><div class="seg" id="mixmode"></div></div></div>
+    <div class="seg mixsel" id="mixsel" aria-label="Elegir qué mostrar"></div>
+    <div class="bar" style="border-bottom:0;padding-block:8px 0"><div class="legend" id="lg3"></div></div>
+    <div class="chart" id="c3"></div>
+  </section>
+
+
+
+  <section class="panel" data-pane="flujos" role="tabpanel" hidden>
+    <div class="bar">
+      <div><h2>Aportes y retiros</h2><div class="eyebrow" style="margin-top:2px">Plata que entró y salió de la cartera, en USD · sin la compra de los mineros</div></div>
+    </div>
+    <div class="kgrid" id="fk"></div>
+    <div class="subbar"><h3>Por mes</h3></div>
+    <div class="bar" style="border-bottom:0;padding-block:8px 0"><div class="legend" id="lg5"></div></div>
+    <div class="chart small" id="c5"></div>
+    <div class="subbar"><h3>Capital neto contra valor de la cartera</h3></div>
+    <div class="bar" style="border-bottom:0;padding-block:8px 0"><div class="legend" id="lg6"></div></div>
+    <div class="chart small" id="c6"></div>
+    <div class="tablewrap" style="border-top:1px solid var(--line)"><table id="ftbl"></table></div>
+    <div class="mtext"><p><b>Aportes:</b> compras pagadas en pesos o con dólares que entraron de afuera, los billetes y el BTC que entregan los mineros (valuado al precio del día de cobro). <b>Retiros:</b> ventas cobradas en pesos o en dólares que salieron, los pagos de luz y seguro de los mineros (USD retirados de Nexo) y la plata destinada a la compra de bienes (movimientos con destino a un bien; si se completa el pago con dólares de afuera, figuran como aporte y retiro el mismo día), que se marca aparte. Los cambios entre activos dentro de la cartera (compras con USD de Balanz, conversiones de BTC a USDT) no son aportes ni retiros. La minería queda así fuera del rendimiento de la cartera financiera (su resultado se ve en Producción minera); en el patrimonio total con mineros se sigue contando como ingreso y gasto propios. <b>Capital neto</b> = valor de la cartera al inicio del período + aportes − retiros; la distancia entre esa línea y el valor de la cartera es la ganancia. El valor al 01/01/2023 incluye los saldos iniciales estimados de USDT y BTC. Hacé clic en un mes de la tabla para ver sus movimientos agrupados por tipo y activo; el detalle de cada operación está en Movimientos.</p></div>
+  </section>
+
+  <section class="panel" data-pane="base100" role="tabpanel" hidden>
+    <div class="bar">
+      <div><h2>Cada activo, base 100</h2><div class="eyebrow" style="margin-top:2px">Al cierre de cada mes · el último punto es la fecha actual</div></div>
+    </div>
+    <div class="bar" style="border-bottom:0;padding-block:8px 0"><div class="legend" id="lg2"></div></div>
+    <div class="chart" id="c2"></div>
+  </section>
+
+  <section class="panel" data-pane="movimientos" role="tabpanel" hidden>
+    <div class="bar"><div><h2>Movimientos</h2><div class="eyebrow" style="margin-top:2px">Valor hoy a precios del momento</div></div><div class="filt"><label>Activo <select id="fAct"></select></label><label>Operación <select id="fOp"></select></label><span class="fcount" id="fCnt"></span></div></div>
+    <div class="tablewrap"><table id="ops"></table></div>
+  </section>
+
+  <section class="panel" data-pane="mineros" role="tabpanel" hidden>
+    <div class="bar"><h2>Mineros · activos productivos</h2><span class="eyebrow">Valor contable · vida útil 6 años</span></div>
+    <div class="kgrid" id="mk"></div>
+    <div class="tablewrap"><table id="mtbl"></table></div>
+    <div class="mtext" id="mtext"></div>
+  </section>
+
+  <section class="panel" data-pane="mineros" role="tabpanel" hidden>
+    <div class="bar"><h2>Bienes</h2><span class="eyebrow">Suman solo en el patrimonio neto</span></div>
+    <div id="ibox"></div>
+  </section>
+
+  <section class="panel" data-pane="produccion" role="tabpanel" hidden>
+    <div class="bar"><h2>Producción minera mensual</h2><div class="seg" id="pmode"></div></div>
+    <div class="kgrid" id="pk"></div>
+    <div class="bar" style="border-bottom:0;padding-block:8px 0"><div class="legend" id="lg4"></div></div>
+    <div class="chart" id="c4"></div>
+    <div class="tablewrap" style="border-top:1px solid var(--line)"><table id="ptbl"></table></div>
+    <div class="mtext"><p>Barras doradas: BTC minado en el mes, valuado al precio del día de cobro. Barras rojas: luz y seguro pagados en USDT. La línea muestra el recupero neto acumulado (producción menos costos, sobre el costo de los equipos). Los meses se agrupan por fecha de cobro o de pago; cuando no se informó el día se tomó el 1.° del mes. Los costos se pagan retirando USD de Nexo: descuentan del saldo de USDT y cuentan como retiro de la cartera (ver Aportes y retiros). Se pagan con el saldo de USDT disponible (saldo inicial o USDT obtenido de convertir BTC).</p></div>
+  </section>
+
+
+</div><!-- .contenido -->
+<dialog id="dlgCalc" class="dlgCalc" aria-labelledby="dlgCalcT"><div class="dcab"><h2 id="dlgCalcT">Cómo se calcula</h2><button type="button" id="dlgCalcX" aria-label="Cerrar">×</button></div><div class="dcuerpo"><p>CEDEARs: nominales × precio en BYMA (pesos) ÷ dólar MEP de venta del día (Yahoo Finance y ArgentinaDatos). BTC: cantidad × precio BTC/USDT en Binance a las 17:00 hora argentina, la misma hora del cierre de BYMA. USDT y la liquidez en dólares (USD MEP en Balanz y billetes) se cuentan a 1 dólar. El USDT se reconstruye con sus movimientos (costos de minería, conversiones de BTC y un saldo inicial estimado); la liquidez se supone constante hacia atrás, salvo los movimientos registrados.
+    La serie es diaria con calendario completo: los fines de semana y feriados los CEDEARs mantienen su último cierre y el BTC sigue moviéndose. El último punto, marcado "en curso", usa precios del momento.
+    </p><p><b>La curva usa las cantidades actuales y deshace hacia atrás los movimientos registrados</b> (operaciones de todos los CEDEARs y acciones, compra de BTC, interés de Nexo y pagos de minería). El USD en Balanz se supone constante hacia atrás; los billetes, según sus movimientos registrados. </p><p><b>Aportes y retiros:</b> las compras pagadas en pesos cuentan como plata que entra y las ventas cobradas en pesos (o en dólares que ya no están en Balanz) como plata que sale, valuadas al MEP del día. El BTC que entregan los mineros cuenta como plata que entra y los pagos de luz y seguro como plata que sale: la minería no forma parte del rendimiento de la cartera financiera, sí del patrimonio total. </p><p><b>Resultado:</b> contra el costo promedio en USD; se muestra solo cuando se conoce todo el historial de compras del activo. Las operaciones de acciones y CEDEARs salen del historial completo de Balanz desde marzo de 2023, así que su costo es real. Solo quedan estimados el saldo inicial de USDT y de BTC en Nexo (al 01/01/2023, de origen desconocido) y los movimientos marcados como estimados; los resultados que los incluyen se marcan con *. La serie arranca el 01/01/2023. Los rendimientos de arriba y de Posiciones descuentan aportes y retiros. El interés diario de Nexo se suma al saldo de BTC día por día. Los mineros se valúan aparte, con un valor contable, y el terreno a valor de compra (ver pestaña Otros activos); los dos solo suman en el patrimonio total. El CEDEAR de AVGO no tiene historial en Yahoo Finance antes del 29/09/2026: se valúa con el precio en Nueva York ÷ 38,5. META y VIST no tienen historial del CEDEAR en Yahoo Finance: se valúan con el precio en Nueva York dividido por el ratio (24 y 3). YPFD figura en Yahoo dividido por 10 y se corrigió. NFLX se expresa en nominales anteriores al split de noviembre de 2025. Los CEDEARs de AAPL, MELI, NFLX y TM cambiaron de ratio en enero de 2024 y Yahoo Finance no ajusta los precios anteriores, así que se dividieron por 2, 2, 3 y 3. Las cantidades se expresan en nominales actuales (NVDA y AVGO ×10 antes de sus splits de 2024). El CEDEAR de SPY cambió de ratio 3:1 a fines de mayo de 2026; los precios anteriores ya vienen ajustados.</p></div></dialog>
+</div><!-- .layout -->
+<script>
+(()=>{const bt=[...document.querySelectorAll('#temas button')];
+const marca=()=>bt.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tema===document.documentElement.dataset.theme)));
+bt.forEach(b=>b.addEventListener('click',()=>{document.documentElement.dataset.theme=b.dataset.tema;try{localStorage.setItem('tema',b.dataset.tema)}catch(e){}marca()}));marca();
+const cab=document.getElementById('cab');const alto=()=>document.documentElement.style.setProperty('--alto-cab',(getComputedStyle(cab).position==='sticky'?cab.offsetHeight:0)+'px');
+new ResizeObserver(alto).observe(cab);addEventListener('resize',alto);alto()})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+<script>
+const D=[]; /* Serie de precios eliminada de esta copia de referencia. Formato original: filas [fecha, GOOGL, MELI, MSFT, SPY, MEP, BTC, en_curso, AVGO, AAPL, VIST, QQQ, NVDA, META, AMZN, YPFD, GGAL, KO, NFLX, BRKB, SPOT, NKE, TSLA, TM, AMD, MCD] (precios en ARS, MEP, BTC en USDT, 0/1). En la versión en servidor se reemplaza por precios_diarios.json (ver REQUERIMIENTOS §4.5). */
+const UPD="2026-10-06T20:49";
+(async()=>{
+// tenencias y movimientos: se leen de los archivos publicados junto al tablero (datos/*.json)
+let TEN,MOV;
+try{[TEN,MOV]=await Promise.all(["datos/tenencias.json","datos/movimientos.json"].map(u=>fetch(u,{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(u);return r.json()})))}
+catch(e){document.getElementById("total").textContent="—";document.getElementById("desg").textContent="No se pudieron cargar los datos de tenencias y movimientos. Volvé a abrir el tablero.";return}
+const A=TEN.activos.map(a=>({t:a.ticker,tipo:a.tipo,n:a.nombre,c:a.grupo,q:a.cantidad,i:a.columna_precio,ars:a.cotiza_en_pesos?1:0,fixed:a.valor_fijo_usd?1:0}));
+const OPS=MOV.movimientos.map(m=>({d:m.fecha,tipo:m.tipo,t:m.activo,q:m.cantidad,usd:m.usd,flow:m.flujo_usd,est:m.estimado?1:0,noQty:m.sin_efecto_en_saldo?1:0,daily:m.devengo_diario?{from:m.devengo_diario.desde,per:m.devengo_diario.por_dia}:undefined,nota:m.nota,dest:m.destino}));
+const PEND=[];
+// Mineros: valuación por anclas (compra y referencias de reventa); entre anclas, interpolación lineal
+// Mineros: valor contable. Tras la compra vale 75% del costo y baja en línea recta durante 6 años de vida útil hasta 25% del costo
+const INM=(TEN.inmuebles||[]).map(x=>({n:x.nombre,d:x.fecha_compra,costo:x.costo_usd,v:x.valor_usd,dv:x.fecha_valuacion,origen:x.origen,dep:x.depreciacion_anual_pct||0,vn:x.valor_nuevo_usd||0}));
+// valor de un bien en una fecha: antes de la compra, lo pagado con ventas que lo tienen como destino; después, su valor (con depreciación lineal si corresponde)
+const bVal=(x,d)=>d<x.d?OPS.filter(o=>o.dest===x.n&&o.flow&&o.d<=d).reduce((a,o)=>a-o.flow,0):x.dep?Math.max(0,(x.vn||x.costo)*(1-x.dep/100*(Date.parse(d)-Date.parse(x.d))/(365.25*864e5))):x.v;
+// el bien entra al patrimonio a medida que salió la plata para comprarlo (ventas con destino), y desde la fecha de compra vale valor_usd
+const inmVal=d=>INM.reduce((s,x)=>s+bVal(x,d),0);
+// pasivos: deuda del plan de ahorro = cuotas pendientes × alícuota en USD (desde la entrega del bien)
+const PAS=(TEN.pasivos||[]).map(p=>({n:p.nombre,bien:p.bien,tipo:p.tipo,tot:p.cuotas_total,cu:p.alicuota_ars/p.mep_referencia,alic:p.alicuota_ars,vm:p.valor_movil_ars,alta:p.fecha_alta,pag:(p.cuotas_pagas||[]).map(c=>c.fecha).sort()}));
+const pasPend=(p,d)=>p.tot-p.pag.filter(f=>f<=d).length;
+const debtVal=d=>PAS.reduce((s,p)=>s+(d<p.alta?0:pasPend(p,d)*p.cu),0);
+const MIN=(()=>{const M=TEN.mineros;return{tr:(M.compras||[{fecha:M.fecha_compra,cantidad:M.cantidad,costo_usd:M.costo_usd}]).map(x=>({d:x.fecha,n:x.cantidad,c:x.costo_usd})),modelo:M.modelo,th1:M.th_por_equipo,n:M.cantidad,compraD:M.fecha_compra,costo:M.costo_usd,ini:M.valor_inicial_pct/100,res:M.valor_residual_pct/100,vida:M.vida_util_anios}})();
+const MIN_FIN=(()=>{const d=new Date(MIN.compraD);d.setUTCFullYear(d.getUTCFullYear()+MIN.vida);return d.toISOString().slice(0,10)})();
+// cada tanda de equipos se valúa desde su fecha de compra: 75% del costo, baja lineal en 6 años hasta 25%
+const trFin=t=>{const d=new Date(t.d);d.setUTCFullYear(d.getUTCFullYear()+MIN.vida);return d.toISOString().slice(0,10)};
+const minVal=d=>MIN.tr.reduce((s,t)=>{if(d<t.d)return s;const x=Math.min(1,(Date.parse(d)-Date.parse(t.d))/(Date.parse(trFin(t))-Date.parse(t.d)));return s+t.c*(MIN.ini-(MIN.ini-MIN.res)*x)},0);
+const dayN=(a,b)=>Math.round((Date.parse(b)-Date.parse(a))/864e5);
+const after=(o,date)=>{if(!o.daily)return o.d>date?o.q:0;const s=date>=o.daily.from?date:null;if(date>=o.d)return 0;if(date<o.daily.from)return o.q;return o.daily.per*dayN(date,o.d)};
+const qAt=(a,date)=>a.q-OPS.filter(o=>o.t===a.t&&!o.noQty).reduce((s,o)=>s+after(o,date),0);
+const TK=A.map(a=>a.t), CH=A.filter(a=>!a.fixed&&a.q>0).map(a=>a.t), CLS=[...new Set(A.map(a=>a.c))], CLSNOW=CLS.filter(c=>A.some(a=>a.c===c&&a.q>0));
+const css=k=>getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+const col=t=>css("--c-"+t.toLowerCase().replace(/[^a-z0-9]/g,""));
+const usd=(n,d=0)=>(n<0?"−":"")+"US$ "+Math.abs(n).toLocaleString("es-AR",{minimumFractionDigits:d,maximumFractionDigits:d});
+const ars=n=>"$ "+n.toLocaleString("es-AR",{maximumFractionDigits:0});
+const pct=n=>(n>=0?"+":"")+n.toFixed(1).replace(".",",")+"%";
+const cls=n=>n>=0?"up":"down";
+const fdate=t=>{const[y,m,d]=t.split("-");return `${d}/${m}/${y.slice(2)}`};
+// precios en vivo: si el botón "Actualizar ahora" guardó una consulta más nueva que el último cierre, se aplica como punto "en curso" de hoy
+let LIVE=null;
+(()=>{let v=null;try{v=JSON.parse(localStorage.getItem("cartera_vivo")||"null")}catch(e){}
+ if(!v||!v.d||!v.ts)return;const last=D[D.length-1];
+ if(v.d<last[0]||Date.now()-v.ts>18*36e5||v.ts<=Date.parse(UPD+":00-03:00"))return;
+ const iso=t=>new Date(t).toISOString().slice(0,10);let row;
+ if(v.d===last[0])row=last;else{let t=Date.parse(last[0]+"T12:00:00Z")+864e5;while(iso(t)<v.d){const r=[...D[D.length-1]];r[0]=iso(t);r[7]=0;D.push(r);t+=864e5}row=[...D[D.length-1]];row[0]=v.d;D.push(row)}
+ if(v.mep)row[5]=v.mep;if(v.btc)row[6]=v.btc;Object.entries(v.cols||{}).forEach(([c,x])=>{if(x>0)row[+c]=x});row[7]=1;LIVE=v})();
+const rows=D.map(r=>{const mep=r[5];const pu={},pa={},pos={};A.forEach(a=>{pu[a.t]=a.fixed?1:a.ars?(r[a.i]||0)/mep:r[a.i];pa[a.t]=a.ars?r[a.i]:null;pos[a.t]=qAt(a,r[0])*pu[a.t]});
+ const byC={};A.forEach(a=>byC[a.c]=(byC[a.c]||0)+pos[a.t]);const tot=TK.reduce((s,t)=>s+pos[t],0),mn=minVal(r[0]),im=inmVal(r[0]),de=debtVal(r[0]);return{t:r[0],mep,pu,pa,pos,byC,live:!!r[7],tot,min:mn,inm:im,deu:de,pat:tot+mn+im-de}});
+const L=rows.at(-1), n=rows.length;
+const byDate=d=>rows.find(r=>r.t===d)||L;
+// una fila por mes: el último día de cada mes (o hoy, si el mes no terminó)
+const MROWS=rows.filter((r,i)=>i===rows.length-1||rows[i+1].t.slice(0,7)!==r.t.slice(0,7));
+// aportes (plata que entra de afuera) y rendimiento que los descuenta
+(()=>{let cf=0,cfP=0,idx=1,idxP=1;rows.forEach((r,i)=>{r.flow=i?OPS.filter(o=>o.flow&&o.d===r.t).reduce((s,o)=>s+o.flow,0):0;r.flowP=r.flow-(i?OPS.filter(o=>o.flow&&o.d===r.t&&(o.tipo==="Minería"||o.tipo==="Costo minería")).reduce((s,o)=>s+o.flow,0):0)+(i?MIN.tr.filter(t=>t.d===r.t).reduce((s,t)=>s+t.c,0)+PAS.reduce((s,p)=>s+(r.t>=p.alta?p.pag.filter(f=>f===r.t).length*p.cu:0),0):0)-(i?OPS.filter(o=>o.flow&&o.dest&&o.dest!=="Mineros"&&o.d===r.t).reduce((s,o)=>s+o.flow,0):0);cf+=r.flow;cfP+=r.flowP;r.cumF=cf;r.cumFP=cfP;
+ if(i>0){const p=rows[i-1];idx*=(r.tot-r.flow)/p.tot;idxP*=(r.pat-r.flowP)/p.pat}r.idx=idx;r.idxP=idxP;r.capT=rows[0].tot+cf;r.capP=rows[0].pat+cfP})})();
+OPS.filter(o=>o.atPrice).forEach(o=>{const r=byDate(o.d);o.usd=o.q*r.pu[o.t]});
+OPS.filter(o=>o.daily).forEach(o=>{o.usd=rows.filter(r=>r.t>=o.daily.from&&r.t<=o.d).reduce((s,r)=>s+o.daily.per*r.pu[o.t],0)});
+// costo promedio y resultados (solo si se conoce todo el historial del activo)
+const COST={};A.forEach(a=>{if(a.fixed)return;const os=OPS.filter(o=>o.t===a.t&&!o.noQty&&!o.daily).sort((x,y)=>x.d.localeCompare(y.d));if(!os.length)return;
+ const d0=new Date(os[0].d);d0.setDate(d0.getDate()-1);let q=qAt(a,d0.toISOString().slice(0,10)),c=0,ok=Math.abs(q)<1e-9,est=false;
+ os.forEach(o=>{if(o.q>0){q+=o.q;c+=o.usd||0;if(o.est)est=true}else{const avg=q>0?c/q:0;if(ok&&q>0){o.real=Math.abs(o.usd)-avg*(-o.q);o.realEst=est}c-=avg*(-o.q);q+=o.q;if(Math.abs(q)<1e-9){q=0;c=0;ok=true;est=false}}});
+ if(ok&&a.q>0)COST[a.t]={avg:c/q,cost:c,est}});
+const f1=n=>n.toFixed(1).replace(".",",")+"%";
+const back=days=>{const d=new Date(L.t);d.setDate(d.getDate()-days);const s=d.toISOString().slice(0,10);let r=rows[0];for(const x of rows){if(x.t<=s)r=x;else break}return r};
+const P={"1D":rows[n-2],"1M":back(30),"3M":back(91),"6M":back(182),"1A":rows[0]};
+
+document.getElementById("total").textContent=usd(L.pat);
+const d1=L.tot-P["1D"].tot-(L.cumF-P["1D"].cumF);
+{const pc=v=>f1(v/(L.pat+L.deu)*100);
+ document.getElementById("desg").innerHTML=[
+  ["Bienes",usd(L.inm),INM.filter(x=>L.t>=x.d).map(x=>x.n==="Fiat Fastback"?"auto":x.n.toLowerCase()).join(" y ")+" · "+pc(L.inm)],
+  ...(L.deu?[["Pasivos","−"+usd(L.deu),PAS.map(p=>"plan Fiat · "+pasPend(p,L.t)+" cuotas").join(", ")]]:[]),
+  ["Otros no financieros",usd(L.min)+'<span class="est">estimado</span>',"mineros S21 · "+pc(L.min)],
+  ["Activos financieros",usd(L.tot),`<span class="${cls(d1)}" title="vs. ${fdate(P["1D"].t)}">${d1>=0?"+":"−"}${usd(Math.abs(d1))} (${pct(d1/P["1D"].tot*100)}) hoy</span> · ${pc(L.tot)}`]]
+  .map(([k,v,e])=>`<div class="dg"><span>${k}</span><strong>${v}</strong><em>${e}</em></div>`).join("");
+ document.getElementById("rend").innerHTML="Rendimiento de los activos financieros: "+["1M","3M","6M","1A"].map(k=>{const v=(L.idx/P[k].idx-1)*100;return `${k==="1A"?"desde "+fdate(rows[0].t):k} <b class="${cls(v)}">${pct(v)}</b>`}).join(" · ")+` · MEP ${ars(L.mep)} · BTC ${usd(L.pu.BTC)}`;}
+// botón "Actualizar ahora": consulta Yahoo (CEDEARs en BYMA), Binance (BTC) y ArgentinaDatos (MEP) con el navegador de la app de Claude
+(()=>{const el=document.getElementById("upd");
+ const fts=ts=>{const d=new Date(ts-3*36e5).toISOString();return `${fdate(d.slice(0,10))} ${d.slice(11,16)}`};
+ el.innerHTML=(LIVE?`Precios en vivo <b>${fts(LIVE.ts)}</b> · último cierre guardado ${fdate(UPD.slice(0,10))} ${UPD.slice(11,16)}`:`Última actualización de la información <b>${fdate(UPD.slice(0,10))} ${UPD.slice(11,16)}</b> · precios automáticos todos los días cerca de las 21 h`)+
+  ` <button type="button" class="vivo" id="vivoBtn" disabled>↻ Actualizar ahora</button> <span class="vivoMsg" id="vivoMsg"></span>`;
+ const btn=document.getElementById("vivoBtn"),msg=document.getElementById("vivoMsg"),B="host:claude_browser";
+ const say=(t,bad)=>{msg.textContent=t;msg.classList.toggle("bad",!!bad)};
+ // símbolo de Yahoo por activo: columna de D, factor (YPFD y NFLX en Yahoo valen 1/10) y ratio si cotiza en Nueva York (precio NY ÷ ratio × MEP)
+ const SY={GOOGL:["GOOGL.BA",1],MELI:["MELI.BA",2],MSFT:["MSFT.BA",3],SPY:["SPY.BA",4],AVGO:["AVGO.BA",8],AAPL:["AAPL.BA",9],VIST:["VIST",10,1,3],QQQ:["QQQ.BA",11],NVDA:["NVDA.BA",12],META:["META",13,1,24],AMZN:["AMZN.BA",14],YPFD:["YPFD.BA",15,10],GGAL:["GGAL.BA",16],KO:["KO.BA",17],NFLX:["NFLX.BA",18,10],BRKB:["BRKB.BA",19],SPOT:["SPOT.BA",20],NKE:["NKE.BA",21],TSLA:["TSLA.BA",22],TM:["TM.BA",23],AMD:["AMD.BA",24],MCD:["MCD.BA",25]};
+ const json=t=>{let s=String(t??"");const k=s.indexOf("Tab Context:");if(k>0)s=s.slice(0,k);const i=s.search(/[{[]/),j=Math.max(s.lastIndexOf("}"),s.lastIndexOf("]"));return JSON.parse(s.slice(i,j+1))};
+ const txt=r=>(r.content||[]).filter(c=>c.type==="text").map(c=>c.text).join("\n")||String(r.payload??"");
+ const why=e=>({server_not_connected:"Este botón funciona solo abriendo el tablero en la app de escritorio de Claude.",not_in_manifest:"El navegador de la app no tiene permiso para este tablero.",cancelled:"Consulta cancelada.",tool_error:"El navegador no pudo abrir una de las fuentes"+(e.message?": "+e.message:"."),needs_reauth:"Hay que volver a conectar la app.",server_unavailable:"La app no respondió. Probá de nuevo en un momento."})[e&&e.code]||"No se pudo consultar ("+((e&&(e.code||e.message))||"error")+").";
+ (async()=>{const mcp=window.claude&&await claude.use("mcp").catch(()=>null);
+  if(!mcp){btn.title="Disponible solo abriendo el tablero en la app de escritorio de Claude";return}
+  let ok=false;try{const l=await mcp.listTools(B);ok=l.servers.some(s=>s.server===B)}catch(e){}
+  if(!ok){btn.title="Disponible solo abriendo el tablero en la app de escritorio de Claude";return}
+  btn.disabled=false;btn.title="Consulta los precios del momento con el navegador de la app de Claude";
+  btn.addEventListener("click",async()=>{btn.disabled=true;say("Consultando Yahoo, Binance y el MEP… (la app puede pedir permiso para cada sitio)");
+   try{const held=A.filter(a=>!a.fixed&&a.q>0&&SY[a.t]).map(a=>a.t);if(!held.includes("SPY"))held.push("SPY");
+    const yUrl="https://query1.finance.yahoo.com/v7/finance/spark?range=1d&interval=1d&symbols="+held.slice(0,20).map(t=>SY[t][0]).join(",");
+    const r0=await mcp.callTool(B,"preview_start",{url:yUrl},{cache:false});const m=/tabId[^\w]*([\w-]+)/.exec(txt(r0));const tabId=m&&m[1];if(!tabId)throw{code:"tool_error",message:"no se abrió la pestaña"};
+    const page=async url=>{if(url)await mcp.callTool(B,"navigate",{url,tabId},{cache:false});return txt(await mcp.callTool(B,"get_page_text",{tabId,max_chars:40000},{cache:false}))};
+    const y=json(await page(null)),q={};(y.spark&&y.spark.result||[]).forEach(s=>{const mm=s.response&&s.response[0]&&s.response[0].meta;if(mm&&mm.regularMarketPrice)q[s.symbol]=mm.regularMarketPrice});
+    const now=Date.now(),d=new Date(now-3*36e5).toISOString().slice(0,10);
+    let btc=null;try{btc=+json(await page("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT")).price}catch(e){if(e&&e.code)throw e}
+    let mep=null;try{mep=+json(await page("https://api.argentinadatos.com/v1/cotizaciones/dolares/bolsa/"+d.replace(/-/g,"/"))).venta}catch(e){if(e&&e.code==="cancelled")throw e}
+    const mepU=mep>0?mep:L.mep,cols={};held.forEach(t=>{const[s,c,f,ratio]=SY[t],p=q[s];if(!(p>0))return;cols[c]=ratio?+(p/ratio*mepU).toFixed(2):+(p*(f||1)).toFixed(2)});
+    if(!Object.keys(cols).length&&!(btc>0))throw{code:"tool_error",message:"las fuentes no devolvieron precios"};
+    const v={d,ts:now,cols,mep:mep>0?mep:null,btc:btc>0?+btc.toFixed(2):null};
+    try{localStorage.setItem("cartera_vivo",JSON.stringify(v))}catch(e){say("No se pudieron guardar los precios en este navegador.",1);btn.disabled=false;return}
+    say("Listo, recargando…");location.reload()}
+   catch(e){say(why(e),1);btn.disabled=false}})})()})();
+
+
+// tabla
+const TYPES=[{k:"Acciones argentinas",cv:"--t-arg",plat:"Balanz"},{k:"CEDEARs",cv:"--t-ced",plat:"Balanz"},{k:"Cripto",cv:"--t-cri",plat:"Nexo"},{k:"Liquidez",cv:"--t-liq",plat:"Balanz + billetes"}];
+const qfmt=a=>a.t==="BTC"?a.q.toLocaleString("es-AR",{minimumFractionDigits:8}):a.fixed?a.q.toLocaleString("es-AR",{minimumFractionDigits:2}):String(a.q);
+const chg=(t,k)=>A.find(a=>a.t===t).fixed||!P[k].pu[t]?null:(L.pu[t]/P[k].pu[t]*100-100);
+const cell=v=>v==null?'<td style="color:var(--muted)">—</td>':`<td class="${cls(v)}">${pct(v)}</td>`;
+const tbl=document.getElementById("tbl");
+let posMode="grupo";try{if(localStorage.getItem("posMode")==="activo")posMode="activo"}catch(e){}
+let posCol=new Set();try{posCol=new Set(JSON.parse(localStorage.getItem("posCol")||"[]"))}catch(e){}
+const gcol=c=>{const a=A.find(x=>x.c===c),T=TYPES.find(T=>T.k===a.tipo);return T?css(T.cv):css("--muted")};
+const wbar=(w,c)=>`<span class="weight" style="--wc:${c}"><i style="width:${Math.max(1,Math.round(w*0.6))}px"></i>${w.toFixed(1).replace(".",",")}%</span>`;
+const resCell=(g,cost,est,partial)=>cost==null?`<td style="color:var(--muted)" title="Falta el costo de compra">—</td>`:`<td class="${cls(g)}" title="Costo ${usd(cost)}${est?" · incluye un movimiento estimado":""}${partial?" · sin los activos a valor fijo o sin costo conocido":""}">${g>=0?"+":"−"}${usd(Math.abs(g))} <span style="opacity:.75">${pct(g/cost*100)}</span>${est?"*":""}</td>`;
+const posRow=(a,grp)=>{const t=a.t,w=L.pos[t]/L.tot*100,k=COST[t];
+ return `<tr${grp?` data-g="${grp}"${posCol.has(grp)?" hidden":""}`:""}><td><span class="tk"${grp?' style="padding-left:14px"':""}><span class="dot" data-t="${t}" style="background:${col(t)}"></span>${t}</span></td><td>${usd(L.pos[t])}</td><td>${wbar(w,col(t))}${grp?`<small class="wsub">${(L.pos[t]/L.byC[grp]*100).toFixed(1).replace(".",",")}% del grupo</small>`:""}</td><td>${qfmt(a)}</td>${k?resCell(L.pos[t]-k.cost,k.cost,k.est):resCell(0,null)}${["1D","1M","1A"].map(k=>cell(chg(t,k))).join("")}</tr>`};
+function paintTbl(){let tg=0,tc=0,te=false;Object.entries(COST).forEach(([t,k])=>{tg+=L.pos[t]-k.cost;tc+=k.cost;te=te||k.est});
+ tbl.innerHTML=`<thead><tr><th>Activo</th><th>Valor USD</th><th>Peso</th><th>Cantidad</th><th>Resultado</th><th>${L.live?"Hoy*":"Hoy"}</th><th>1M</th><th>1A</th></tr></thead><tbody>`+
+(posMode==="activo"?A.filter(a=>a.q>0).sort((x,y)=>L.pos[y.t]-L.pos[x.t]).map(a=>posRow(a)).join(""):
+CLSNOW.slice().sort((x,y)=>L.byC[y]-L.byC[x]).map(c=>{const sub=L.byC[c],allFixed=A.filter(a=>a.c===c).every(a=>a.fixed);const cq=A.filter(a=>a.c===c),cc=k=>{if(allFixed)return null;const z=cq.filter(a=>P[k].pu[a.t]>0);return (z.reduce((s,a)=>s+a.q*L.pu[a.t],0)/z.reduce((s,a)=>s+a.q*P[k].pu[a.t],0)-1)*100};
+ const held=cq.filter(a=>a.q>0),wc=held.filter(a=>COST[a.t]),gg=wc.reduce((s,a)=>s+L.pos[a.t]-COST[a.t].cost,0),gc=wc.reduce((s,a)=>s+COST[a.t].cost,0),ge=wc.some(a=>COST[a.t].est),part=held.some(a=>!COST[a.t]);
+ const open=!posCol.has(c);
+ return `<tr class="grp${open?" open":""}" data-c="${c}" tabindex="0" aria-expanded="${open}"><td><span class="car">▸</span>${c} <span class="gn">· ${held.length}</span></td><td>${usd(sub)}</td><td>${wbar(sub/L.tot*100,gcol(c))}</td><td></td>${wc.length?resCell(gg,gc,ge,part):resCell(0,null)}${["1D","1M","1A"].map(k=>cell(cc(k))).join("")}</tr>`+
+ held.sort((x,y)=>L.pos[y.t]-L.pos[x.t]).map(a=>posRow(a,c)).join("")}).join(""))+
+`</tbody><tfoot><tr><td>Total</td><td>${usd(L.tot)}</td><td>100%</td><td></td>${resCell(tg,tc,te,true)}${["1D","1M","1A"].map(k=>{const v=(L.idx/P[k].idx-1)*100;return `<td class="${cls(v)}">${pct(v)}</td>`}).join("")}</tr></tfoot>`;
+ tbl.querySelectorAll("tr.grp").forEach(tr=>{const tgl=()=>{const c=tr.dataset.c,op=posCol.has(c);if(op)posCol.delete(c);else posCol.add(c);tr.classList.toggle("open",op);tr.setAttribute("aria-expanded",String(op));tbl.querySelectorAll("tr[data-g]").forEach(r=>{if(r.dataset.g===c)r.hidden=!op});try{localStorage.setItem("posCol",JSON.stringify([...posCol]))}catch(e){}};
+  tr.addEventListener("click",tgl);tr.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();tgl()}})})}
+paintTbl();
+(()=>{const el=document.getElementById("posmode");el.innerHTML=`<button data-m="grupo">Por grupo y activo</button><button data-m="activo">Solo por activo</button>`;const bs=[...el.children];const set=m=>{posMode=m;bs.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.m===m)));paintTbl();try{localStorage.setItem("posMode",m)}catch(e){}};bs.forEach(b=>b.addEventListener("click",()=>set(b.dataset.m)));set(posMode)})();
+
+document.getElementById("classes").innerHTML=CLSNOW.map(c=>`<span>${c} <b>${(L.byC[c]/L.tot*100).toFixed(1).replace(".",",")}%</b></span>`).join("")+(L.live?`<span>* Hoy: precios en curso contra el cierre del ${fdate(P["1D"].t)}</span>`:"")+(Object.values(COST).some(k=>k.est)?`<span>* Resultado: incluye un movimiento estimado</span>`:"");
+
+// treemap
+function squarify(items,x,y,w,h){const out=[];let rest=items.slice();const tot=rest.reduce((s,i)=>s+i.v,0);const scale=(w*h)/tot;
+ rest=rest.map(i=>({...i,a:i.v*scale}));
+ while(rest.length){const short=Math.min(w,h);let row=[rest[0]],i=1;
+  const worst=r=>{const s=r.reduce((a,b)=>a+b.a,0);const mx=Math.max(...r.map(b=>b.a)),mn=Math.min(...r.map(b=>b.a));return Math.max(short*short*mx/(s*s),(s*s)/(short*short*mn))};
+  while(i<rest.length&&worst([...row,rest[i]])<=worst(row)){row.push(rest[i]);i++}
+  const s=row.reduce((a,b)=>a+b.a,0);
+  if(w>=h){const cw=s/h;let cy=y;row.forEach(r=>{const ch=r.a/cw;out.push({...r,x,y:cy,w:cw,h:ch});cy+=ch});x+=cw;w-=cw}
+  else{const rh=s/w;let cx=x;row.forEach(r=>{const cw=r.a/rh;out.push({...r,x:cx,y,w:cw,h:rh});cx+=cw});y+=rh;h-=rh}
+  rest=rest.slice(row.length)}
+ return out}
+const lum=hex=>{const m=hex.replace("#","");const [r,g,b]=[0,2,4].map(i=>parseInt(m.substr(i,2),16)/255).map(c=>c<=.03928?c/12.92:((c+.055)/1.055)**2.4);return .2126*r+.7152*g+.0722*b};
+let lastG=null;
+// mapa en dos bloques: activos financieros (cartera) y activos no financieros (bienes)
+function drawTM(g){lastG=g;const el=document.getElementById("tm");const W=el.clientWidth,Hh=el.clientHeight;if(!W)return;
+ const fin=g.filter(x=>!x.nofin),nf=g.filter(x=>x.nofin),vf=fin.reduce((s,x)=>s+x.v,0),vn=nf.reduce((s,x)=>s+x.v,0);
+ if(!nf.length||!fin.length){el.innerHTML=tmGroups(g,0,0,W,Hh);return}
+ const SH=26,narrow=true;/* activos no financieros debajo de los financieros */let html="";
+ const sup=(k,v,x,y,w)=>`<div class="sup" style="left:${x+6}px;top:${y}px;width:${w-12}px"><span>${k}</span><em>${usd(v)} · ${f1(v/TMT*100)}</em></div>`;
+ if(narrow){const hf=Math.round(Math.min(.75,Math.max(.3,vf/(vf+vn)))*(Hh-2*SH));
+  html=sup("Activos financieros",vf,0,0,W)+tmGroups(fin,0,SH,W,hf)+sup("Activos no financieros",vn,0,SH+hf+6,W)+tmGroups(nf,0,2*SH+hf+6,W,Hh-2*SH-hf-6)}
+ else{const wf=Math.round(Math.min(.75,Math.max(.25,vf/(vf+vn)))*W);
+  html=sup("Activos financieros",vf,0,0,wf)+tmGroups(fin,0,SH,wf,Hh-SH)+sup("Activos no financieros",vn,wf,0,W-wf)+tmGroups(nf,wf,SH,W-wf,Hh-SH)}
+ el.innerHTML=html}
+function tmGroups(g,X0,Y0,W,Hh){
+ const gt=g.reduce((s,x)=>s+x.v,0);const groups=squarify(g.map(x=>({...x,vr:x.v,v:Math.max(x.v,gt*.07)})).sort((a,b)=>b.v-a.v),X0,Y0,W,Hh).map(G=>({...G,v:G.vr}));/* los grupos chicos ocupan al menos 7% del área para que se lean */const GAP=6,PAD=5;
+ return groups.map(G=>{const LBL=G.bare?0:28;const gw=G.w-GAP*2,gh=G.h,inner=squarify(G.as.filter(a=>a.v>0),PAD-2,LBL+PAD-2,gw-PAD*2,gh-LBL-PAD*2);
+  if(!G.bare&&gh<LBL+34){const tip=G.as.map(a=>`${a.t}: ${usd(a.v)}`).join(" · ");return `<div class="g" tabindex="0" title="${G.k} · ${tip}" style="--gc:${css(G.cv)};left:${G.x+GAP}px;top:${G.y}px;width:${gw}px;height:${gh-2}px;background:var(--gc)"><div class="gl" style="height:100%"><span>${G.k}</span><em>${usd(G.v)} · ${f1(G.v/TMT*100)}</em></div></div>`}
+  return `<div class="g" style="--gc:${css(G.cv)};left:${G.x+GAP}px;top:${G.y}px;width:${gw}px;height:${gh}px">${G.bare?"":`<div class="gl" title="${G.k}${G.plat?" · "+G.plat:""} · ${usd(G.v)} · ${f1(G.v/TMT*100)}">${gw<150?`<em>${f1(G.v/TMT*100)}</em>`:gw<320?`<span>${G.k}</span><em>${f1(G.v/TMT*100)}</em>`:`<span>${G.k}${G.plat?" · "+G.plat:""}</span><em>${usd(G.v)} · ${f1(G.v/TMT*100)}</em>`}</div>`}`+
+  inner.map(c=>{const bg=col(c.t),fg=lum(bg)>.35?"#14202A":"#FFFFFF",big=c.w>90&&c.h>62,mid=c.w>46&&c.h>26;
+   return `<div class="c${c.est?" hatch":""}" tabindex="0" title="${c.t} · ${c.n} · ${usd(c.v)} · ${f1(c.v/TMT*100)} del total" style="left:${c.x}px;top:${c.y}px;width:${c.w}px;height:${c.h}px;background-color:${bg};color:${fg};${c.w<80?"padding:6px 5px;":""}">${mid?`<b${c.w<80?' style="font-size:13px"':""}>${c.t}</b>`:""}${big?`<span>${usd(c.v)}</span><span>${f1(c.v/TMT*100)} del total</span>`:""}</div>`}).join("")+`</div>`}).join("")}
+new ResizeObserver(()=>lastG&&drawTM(lastG)).observe(document.getElementById("tm"));
+
+// composición
+let TMT=0;
+let compVal="neto";try{if(localStorage.getItem("compVal")==="bruto")compVal="bruto"}catch(e){}
+let compSel=new Set(["fin","nf"]);try{const v=JSON.parse(localStorage.getItem("compSel")||"null");if(Array.isArray(v)&&v.length)compSel=new Set(v)}catch(e){}
+function paintComp(){
+ let g=TYPES.map(T=>{const as=A.filter(a=>a.tipo===T.k).map(a=>({...a,v:L.pos[a.t]})).sort((x,y)=>y.v-x.v);return{...T,as,v:as.reduce((s,a)=>s+a.v,0)}}).filter(x=>x.v>0);
+ {const pasDe=x=>PAS.filter(p=>p.bien===x.n&&L.t>=p.alta).reduce((s,p)=>s+pasPend(p,L.t)*p.cu,0);
+ const as=[...INM.filter(x=>L.t>=x.d).map(x=>{const de=compVal==="neto"?pasDe(x):0;return{t:x.n,n:de?x.n+" · parte pagada (valor − deuda)":x.n,v:Math.max(0,bVal(x,L.t)-de)}}),...(L.min>0?[{t:"S21",n:"3 × Antminer S21 200 TH",v:L.min,est:1}]:[])].sort((x,y)=>y.v-x.v);
+  if(as.length)g.push({k:"Bienes",cv:"--t-inm",plat:"",v:as.reduce((s,a)=>s+a.v,0),as,nofin:1,bare:1})}
+ const sel=compSel,gs=g.filter(x=>x.nofin?sel.has("nf"):sel.has("fin"));TMT=gs.reduce((s,x)=>s+x.v,0);drawTM(gs);
+ document.getElementById("patlbl").textContent=TMT.toLocaleString("es-AR",{maximumFractionDigits:0});document.getElementById("patlbl2").textContent=sel.size===2?(compVal==="neto"?"patrimonio neto (bienes financiados por la parte pagada)":"activos totales (bienes a valor completo, sin descontar pasivos)"):sel.has("fin")?"activos financieros":"activos no financieros";g=gs;
+ {const item=x=>`<span><span class="sw" style="background:${css(x.cv)}"></span><b>${x.k}</b> <span class="num">${f1(x.v/TMT*100)}</span> · ${usd(x.v)}</span>`,fin=g.filter(x=>!x.nofin),nf=g.filter(x=>x.nofin).flatMap(x=>x.as.map(a=>({k:a.t==="S21"?"Mineros":a.t,cv:"--c-"+a.t.toLowerCase().replace(/[^a-z0-9]/g,""),v:a.v})));
+  const blk=(t,xs)=>!xs.length?"":`<div class="cblk"><span class="cbt">${t} <span class="num">${usd(xs.reduce((s,x)=>s+x.v,0))} · ${f1(xs.reduce((s,x)=>s+x.v,0)/TMT*100)}</span></span>${xs.map(item).join("")}</div>`;
+  document.getElementById("cleg").innerHTML=blk("Activos financieros",fin)+(nf.length?blk("Activos no financieros",nf):"")+`${fin.length&&nf.length&&compVal==="neto"?`<div class="cblk"><span class="cbt">Patrimonio neto <span class="num">${usd(L.pat)}</span></span>${L.deu?`<span>El auto figura por la parte ya pagada (valor ${usd(L.inm-INM.filter(x=>x.n==="Terreno").reduce((s,x)=>s+bVal(x,L.t),0))} − deuda ${usd(L.deu)})</span>`:""}</div>`:""}${fin.length&&nf.length&&compVal!=="neto"?`<div class="cblk"><span class="cbt">Activos totales <span class="num">${usd(L.pat+L.deu)}</span></span>${L.deu?`<span>Pasivos <span class="num down">−${usd(L.deu)}</span> (plan Fiat)</span>`:""}<span><b>Patrimonio neto</b> <span class="num">${usd(L.pat)}</span></span></div>`:""}`}
+}
+(()=>{const el=document.getElementById("compval");el.innerHTML=`<button data-v="neto" title="Bienes financiados por la parte ya pagada: valor menos la deuda pendiente">Parte pagada</button><button data-v="bruto" title="Bienes por su valor completo, sin descontar deudas">Valor completo</button>`;const bs=[...el.children];const set=v=>{compVal=v;bs.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===v)));paintComp();try{localStorage.setItem("compVal",v)}catch(e){}};bs.forEach(b=>b.addEventListener("click",()=>set(b.dataset.v)));bs.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===compVal)))})();
+(()=>{const el=document.getElementById("compsel");el.innerHTML=`<button data-g="fin">Activos financieros</button><button data-g="nf">Activos no financieros</button>`;const bs=[...el.children];
+ const paint=()=>bs.forEach(b=>b.setAttribute("aria-pressed",String(compSel.has(b.dataset.g))));
+ bs.forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.g;if(compSel.has(k)){if(compSel.size===1)return;compSel.delete(k)}else compSel.add(k);paint();paintComp();try{localStorage.setItem("compSel",JSON.stringify([...compSel]))}catch(e){}}));paint()})();
+paintComp();
+
+// movimientos (más nuevo primero; cada contrapartida queda junto a su operación)
+const OPS_SORTED=(()=>{let g=-1;const x=OPS.map((o,i)=>{if(!["Pago","Cobro"].includes(o.tipo))g++;return{o,g,i}});return x.sort((a,b)=>b.o.d.localeCompare(a.o.d)||b.g-a.g||a.i-b.i).map(z=>z.o)})();
+const b8=n=>n.toLocaleString("es-AR",{minimumFractionDigits:8,maximumFractionDigits:8});
+// cantidad acumulada del activo después de cada movimiento (de lo más viejo a lo más nuevo)
+const SALDO=(()=>{const m=new Map(),bal={};A.forEach(a=>{bal[a.t]=a.q-OPS.filter(o=>o.t===a.t&&!o.noQty).reduce((s,o)=>s+o.q,0)});
+ OPS_SORTED.slice().reverse().forEach(o=>{if(!o.noQty)bal[o.t]=Math.round((bal[o.t]+o.q)*1e8)/1e8;m.set(o,bal[o.t])});return m})();
+const qa=(t,q)=>Math.abs(q)<1e-9?"0":t==="BTC"?b8(q):q.toLocaleString("es-AR",{minimumFractionDigits:2,maximumFractionDigits:4});
+const qf=(t,q)=>(q>=0?"+":"−")+(t==="BTC"?b8(Math.abs(q)):Math.abs(q).toLocaleString("es-AR",{minimumFractionDigits:2}));
+document.getElementById("ops").innerHTML=`<thead><tr><th>Fecha</th><th style="text-align:left">Movimiento</th><th>Activo</th><th>Cantidad</th><th title="Tenencia del activo después del movimiento">Cantidad acumulada</th><th>Precio USD</th><th>Valor USD</th><th>Valor hoy</th><th>Resultado</th></tr></thead><tbody>`+
+PEND.map(o=>`<tr data-t="${o.t}" data-op="${o.tipo}"><td>${fdate(o.d)}</td><td class="mv"><b>${o.tipo}<span class="live">pendiente</span></b><small>${o.nota}</small></td><td><span class="tk" style="justify-content:flex-end"><span class="dot" data-t="${o.t}" style="background:${col(o.t)}"></span>${o.t}</span></td><td class="${o.q>0?"up":o.q<0?"down":""}">${qf(o.t,o.q)}</td><td>—</td><td>—</td><td style="color:var(--muted)">al 01/10</td><td>≈ ${usd(o.q*L.pu[o.t],2)}</td><td style="color:var(--muted)">—</td></tr>`).join("")+
+OPS_SORTED.map(o=>`<tr data-t="${o.t}" data-op="${o.tipo}"><td>${fdate(o.d)}</td><td class="mv"><b>${o.tipo}${o.est?'<span class="est">estimado</span>':""}</b><small>${o.nota}</small></td><td><span class="tk" style="justify-content:flex-end"><span class="dot" data-t="${o.t}" style="background:${col(o.t)}"></span>${o.t}</span></td><td class="${o.q>0?"up":o.q<0?"down":""}">${qf(o.t,o.q)}</td><td class="acum">${qa(o.t,SALDO.get(o))}</td><td>${o.usd&&!A.find(a=>a.t===o.t).fixed?usd(Math.abs(o.usd/o.q),o.t==="BTC"?0:2):"—"}</td>${(()=>{const aa=A.find(a=>a.t===o.t),v0=o.usd!=null?Math.sign(o.q)*o.usd:o.q*(aa.fixed?1:NaN);if(o.est){return `<td>${usd(v0,2)}</td><td style="color:var(--muted)">—</td><td style="color:var(--muted)" title="El resultado aparece en las ventas y en Posiciones">—</td>`}if(o.tipo==="Venta"||o.tipo==="Conversión"){return `<td>${usd(v0,2)}</td><td style="color:var(--muted)">${aa.q===0?"vendido":"—"}</td>${o.real!=null?`<td class="${cls(o.real)}" title="Contra el costo promedio${o.realEst?" (incluye un saldo inicial estimado)":""}">${o.real>=0?"+":"−"}${usd(Math.abs(o.real),2)}${o.realEst?"*":""}</td>`:"<td style=\"color:var(--muted)\" title=\"Falta el costo de compra\">—</td>"}`}if(!aa.fixed&&aa.q===0){return `<td>${usd(v0,2)}</td><td style="color:var(--muted)">vendido</td>${o.real!=null?`<td class="${cls(o.real)}">${o.real>=0?"+":"−"}${usd(Math.abs(o.real),2)}</td>`:"<td style=\"color:var(--muted)\">—</td>"}`}const v1=o.q*L.pu[o.t],dv=v1-v0;return `<td>${usd(v0,2)}</td><td>${usd(v1,2)}</td><td class="${Math.abs(dv)<0.005?"":cls(dv)}">${Math.abs(dv)<0.005?"—":(dv>=0?"+":"−")+usd(Math.abs(dv),2)}</td>`})()}</tr>`).join("")+`</tbody>`;
+
+// filtros de movimientos
+(()=>{const rows=[...document.querySelectorAll("#ops tbody tr")],fa=document.getElementById("fAct"),fo=document.getElementById("fOp"),cnt=document.getElementById("fCnt");
+ const uniq=k=>[...new Set(rows.map(r=>r.dataset[k]))].sort((x,y)=>x.localeCompare(y,"es"));
+ const opts=(el,v,lbl)=>{el.innerHTML=`<option value="">${lbl}</option>`+v.map(x=>`<option>${x}</option>`).join("")};
+ opts(fa,uniq("t"),"Todos");opts(fo,uniq("op"),"Todas");
+ const K="movFiltros";try{const s=JSON.parse(localStorage.getItem(K)||"{}");if(s.a&&[...fa.options].some(o=>o.value===s.a))fa.value=s.a;if(s.o&&[...fo.options].some(o=>o.value===s.o))fo.value=s.o}catch(e){}
+ const apply=()=>{let n=0;rows.forEach(r=>{const ok=(!fa.value||r.dataset.t===fa.value)&&(!fo.value||r.dataset.op===fo.value);r.hidden=!ok;if(ok)n++});cnt.textContent=`${n} de ${rows.length}`;try{localStorage.setItem(K,JSON.stringify({a:fa.value,o:fo.value}))}catch(e){}};
+ fa.onchange=fo.onchange=apply;apply();})();
+
+// mineros
+
+(()=>{const c0=MIN.costo,v=L.min,th=MIN.th1*MIN.n,dv=v/c0*100-100;
+ const minedBTC=OPS.filter(o=>o.tipo==="Minería").reduce((s,o)=>s+o.q,0);
+ const minedUSD=OPS.filter(o=>o.tipo==="Minería").reduce((s,o)=>s+(o.usd||0),0);
+ const costUSD=OPS.filter(o=>o.tipo==="Costo minería").reduce((s,o)=>s+o.usd,0),netUSD=minedUSD-costUSD;
+ const yr=c0*(MIN.ini-MIN.res)/MIN.vida;
+ document.getElementById("mk").innerHTML=[["Costo de compra",usd(c0),"compra · "+usd(c0/th,1)+"/TH"],["Valor contable hoy",usd(v),usd(v/th,1)+"/TH · "+f1(v/c0*100)+" del costo"],["Pérdida de valor",`<b class="${cls(dv)}">${pct(dv)}</b>`,"−"+usd(c0-v)+" desde la compra"],["Amortización anual",usd(yr),"≈ "+usd(yr/12)+" por mes"],["Resultado neto de la minería",usd(netUSD),usd(minedUSD)+" producido − "+usd(costUSD)+" de luz y seguro"],["Recupero neto",f1(netUSD/c0*100),"del costo de los equipos"]]
+ .map(([k,s,e])=>`<div><span>${k}</span><strong>${s}</strong><em>${e}</em></div>`).join("");
+ document.getElementById("mtbl").innerHTML=`<thead><tr><th>Equipo</th><th>Cantidad</th><th>Hashrate</th><th>Compra</th><th>Costo USD</th><th>Valor hoy</th><th>Valor al fin de vida</th><th>Fin de vida útil</th></tr></thead><tbody>${MIN.tr.map(t=>{const vt=minVal(L.t)-MIN.tr.filter(u=>u!==t).reduce((s,u)=>s+(L.t<u.d?0:u.c*(MIN.ini-(MIN.ini-MIN.res)*Math.min(1,(Date.parse(L.t)-Date.parse(u.d))/(Date.parse(trFin(u))-Date.parse(u.d))))),0);return `<tr><td><span class="tk"><span class="dot" style="background:${col("s21")}"></span>${MIN.modelo} ${MIN.th1} TH</span></td><td>${t.n}</td><td>${t.n*MIN.th1} TH/s</td><td>${fdate(t.d)}</td><td>${usd(t.c)}</td><td>${usd(vt)}<span class="est">est.</span></td><td>${usd(t.c*MIN.res)}</td><td>${["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"][+trFin(t).slice(5,7)-1]} ${trFin(t).slice(0,4)}</td></tr>`}).join("")}</tbody>`;
+ document.getElementById("mtext").innerHTML=`<p><b>Cómo se valúan.</b> Se pueden haber comprado en varias tandas; cada tanda se valúa desde su fecha. Al comprarlos, los equipos pasan a valer el 75% de lo que costaron (${usd(c0*MIN.ini)} en total). Desde ahí pierden valor en línea recta durante una vida útil de 6 años, hasta quedar en el 25% del costo (${usd(c0*MIN.res)}) a comienzos de ${MIN_FIN.slice(0,4)}. Después se mantienen en ese valor residual.</p>
+ <p><b>Contra el mercado.</b> Hoy, S21 200 TH usados se ofrecen entre US$ 500 y US$ 1.250 por unidad (Compass Mining y eBay), bastante por debajo de este valor contable de ${usd(v/MIN.n)} por unidad. El criterio contable muestra el valor de uso del equipo a lo largo de su vida, no lo que se obtendría vendiéndolo hoy.</p>
+ <p><b>Por qué va aparte.</b> Es una estimación. Por eso en la cabecera figura aparte, como "otros activos no financieros" (marcado estimado), separado de los activos financieros, que se valúan a mercado; suma en el patrimonio neto. El BTC que producen entra a la cartera financiera como aporte (ver Aportes y retiros). Las ventas destinadas a pagarlos figuran en Aportes y retiros como "a la compra de bienes".</p>
+ <p>Referencias de mercado: <a href="https://compassmining.io/hardware/Antminer-S21" target="_blank" rel="noopener">Compass Mining</a> · <a href="https://www.ebay.com/shop/antminer-s21-200th?_nkw=antminer+s21+200th" target="_blank" rel="noopener">eBay</a></p>`;
+})();
+
+// globo de ayuda sobre los gráficos
+function hintFor(el){const box=document.getElementById(el);const h=document.createElement("div");h.className="hint";h.hidden=true;box.appendChild(h);
+ return{show(x,y,html){h.innerHTML=html;h.hidden=false;const W=box.clientWidth,hw=h.offsetWidth,hh=h.offsetHeight;h.style.left=Math.min(Math.max(4,x+14),W-hw-4)+"px";h.style.top=Math.max(4,y-hh-10)+"px"},hide(){h.hidden=true}}}
+
+// charts
+function mk(el,fmt){return LightweightCharts.createChart(document.getElementById(el),{autoSize:true,
+ layout:{background:{type:"solid",color:"transparent"},textColor:css("--muted"),fontFamily:"system-ui, -apple-system, Segoe UI, sans-serif",fontSize:11},
+ grid:{vertLines:{visible:false},horzLines:{color:css("--grid")}},
+ rightPriceScale:{borderVisible:false,scaleMargins:{top:.08,bottom:.06}},timeScale:{borderColor:css("--line"),rightOffset:2},
+ crosshair:{mode:1},handleScroll:false,handleScale:false,localization:{locale:"es-AR",priceFormatter:fmt}})}
+const c1=mk("c1",undefined);c1.applyOptions({handleScroll:false,handleScale:false});
+const area=c1.addAreaSeries({lineWidth:2,priceLineVisible:false,autoscaleInfoProvider:orig=>{const r=orig();if(r&&r.priceRange)r.priceRange.minValue=0;return r}});
+c1.priceScale("right").applyOptions({scaleMargins:{top:.08,bottom:0}});
+// bienes (terreno, auto y mineros); en "Patrimonio total" se apilan debajo, netos de la deuda del auto
+rows.forEach(r=>{r.bie=r.min+r.inm;r.bin=r.bie-r.deu});
+const areaB=c1.addAreaSeries({lineWidth:2,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
+let evAsset=null,evKind="pos",evShowQ=true,SEL=null;
+const qSer=c1.addLineSeries({priceScaleId:"left",lineWidth:1,pointMarkersVisible:true,pointMarkersRadius:2,priceLineVisible:false,lastValueVisible:true,crosshairMarkerVisible:false,visible:false,
+ autoscaleInfoProvider:orig=>{const r=orig();if(r&&r.priceRange)r.priceRange.minValue=0;return r}});
+c1.priceScale("left").applyOptions({visible:false,borderVisible:false,scaleMargins:{top:.5,bottom:0}});
+const paintArea=()=>{const ac=evAsset?col(evAsset):css("--accent");area.applyOptions({lineColor:ac,topColor:evAsset?ac+"40":css("--accent-soft"),bottomColor:"rgba(0,0,0,0)"});const b=css("--t-inm");areaB.applyOptions({lineColor:b,topColor:b+"99",bottomColor:b+"55"})};
+paintArea();
+let evMode="tot";const kfmt=n=>n.toLocaleString("es-AR",{maximumFractionDigits:0});const EVR=[rows[0],...MROWS];let evFrom=EVR[0].t;const EVF=()=>EVR.filter(r=>r.t>=evFrom);const evQ=r=>{const a=A.find(x=>x.t===evAsset),pu=r.pu[a.t];return pu>0?r.pos[a.t]/pu:qAt(a,r.t)};
+const evV=r=>evAsset?(evKind==="pu"?r.pu[evAsset]:evKind==="q"?evQ(r):r.pos[evAsset]):r[evMode];
+const evDec=()=>{if(!evAsset)return 0;if(evKind==="q")return evAsset==="BTC"?4:0;return (evKind==="pu"||A.find(a=>a.t===evAsset).fixed)&&Math.max(...EVF().map(evV))<1000?2:0};
+const evFmt=n=>(Math.abs(n)<1e-9?0:n).toLocaleString("es-AR",{minimumFractionDigits:evDec(),maximumFractionDigits:evDec()});
+const setEv=m=>{evMode=m;SEL=null;const ac=evAsset?col(evAsset):css("--accent");paintArea();area.applyOptions({priceFormat:{type:"custom",minMove:0.0001,formatter:evFmt}});areaB.applyOptions({priceFormat:{type:"custom",minMove:0.01,formatter:evFmt}});
+ area.setData(EVF().map(r=>({time:r.t,value:+evV(r).toFixed(evKind==="q"&&evAsset?8:evDec()?4:2)})));areaB.setData(EVF().map(r=>({time:r.t,value:+Math.max(0,r.bin).toFixed(2)})));areaB.applyOptions({visible:m==="pat"&&!evAsset});
+ area.setMarkers(EVF().map(r=>({time:r.t,position:"inBar",shape:"circle",size:0.5,color:ac})));
+ const qOn=!!evAsset&&evShowQ&&!A.find(x=>x.t===evAsset).fixed,qd=evAsset==="BTC"?4:0,qf=n=>(Math.abs(n)<1e-9?0:n).toLocaleString("es-AR",{minimumFractionDigits:qd,maximumFractionDigits:qd});
+ qSer.applyOptions({visible:qOn,color:css("--ink"),priceFormat:{type:"custom",minMove:qd?0.0001:1,formatter:qf}});c1.priceScale("left").applyOptions({visible:qOn});
+ qSer.setData(qOn?EVF().map(r=>({time:r.t,value:+evQ(r).toFixed(8)})):[]);evQf=qf;evQon=qOn;
+ document.getElementById("evkey").innerHTML=qOn?` · <span class="sq" style="background:${ac}"></span><b>valor en USD</b> (eje derecho) · <i></i><b>cantidad${evAsset==="BTC"?" de BTC":" de nominales"}</b> (eje izquierdo)`:"";
+ const a=evAsset&&A.find(x=>x.t===evAsset);document.getElementById("evh").textContent=a?`${a.t} · valor de la tenencia en USD${qOn?" y cantidad":""}`:"Evolución del valor en USD";
+ showLg(L);renderEvList();requestAnimationFrame(placeLbl)};
+const lblBox=(()=>{const d=document.createElement("div");d.style.cssText="position:absolute;inset:0;pointer-events:none;z-index:3";document.getElementById("c1").appendChild(d);return d})();
+let evQf=String,evQon=false;
+function placeLbl(){
+ // etiquetas sin colisiones: cada una prueba su lado preferido (valor arriba, cantidad abajo) y, si choca con otra etiqueta o tapa un punto, el lado opuesto; si no entra, se omite (la del último mes siempre va)
+ const ts=c1.timeScale(),E_=EVF(),n_=E_.length,OX=evQon?c1.priceScale("left").width():0,X1=lblBox.clientWidth-c1.priceScale("right").width(),H=lblBox.clientHeight-ts.height();
+ const cx=placeLbl.cx||(placeLbl.cx=document.createElement("canvas").getContext("2d"));cx.font="500 11px "+getComputedStyle(document.body).fontFamily;
+ const vc=evAsset?col(evAsset):"var(--accent)",cands=[],pts=[];
+ const add=(ser,val,fmt,color,up)=>{let lastX=-1e9;E_.forEach((r,i)=>{const x0=ts.timeToCoordinate(r.t),v=val(r),y=ser.priceToCoordinate(v);if(x0==null||y==null)return;const x=x0+OX;pts.push([x,y]);const last=i===n_-1;if(!last&&x-lastX<58)return;lastX=x;const t=fmt(v);cands.push({x,y,t,color,up,last,w:cx.measureText(t).width+8})})};
+ add(area,evV,evFmt,vc,true);if(evQon)add(qSer,evQ,evQf,"var(--ink)",false);
+ cands.sort((p,q)=>(q.last-p.last)||(q.up-p.up));
+ const H_=15,G=6,boxes=[],out=[];
+ const hits=b=>boxes.some(o=>b.l<o.r+2&&b.r>o.l-2&&b.t<o.b+1&&b.b>o.t-1)||pts.some(([px,py])=>px>b.l-3&&px<b.r+3&&py>b.t-3&&py<b.b+3);
+ cands.forEach(c=>{const l=Math.min(Math.max(c.x-c.w/2,OX+2),X1-c.w-2);const tries=(c.up?[c.y-G-H_,c.y+G]:[c.y+G,c.y-G-H_]).map(t=>({l,r:l+c.w,t,b:t+H_})).filter(b=>b.t>=0&&b.b<=H);
+  let b=tries.find(x=>!hits(x));if(!b&&c.last)b=tries[0];if(!b)return;boxes.push(b);
+  out.push(`<span style="position:absolute;left:${b.l}px;top:${b.t}px;width:${c.w}px;text-align:center;font:500 11px var(--mono);line-height:15px;color:${c.color};background:var(--panel);border-radius:3px;white-space:nowrap">${c.t}</span>`)});
+ lblBox.innerHTML=out.join("");drawSel()}
+// selección de un período arrastrando sobre el gráfico de Evolución: resalta la franja y muestra delta de posiciones, de valor, ganancia y la comparación con el SPY
+const c1el=document.getElementById("c1");c1el.style.userSelect="none";
+const selBox=(()=>{const d=document.createElement("div");d.className="selband";d.hidden=true;c1el.appendChild(d);return d})();
+const selCard=(()=>{const d=document.createElement("div");d.className="selcard";d.hidden=true;c1el.appendChild(d);return d})();
+const selOX=()=>c1.priceScale("left").options().visible?c1.priceScale("left").width():0;
+const xToT=x=>{const ts=c1.timeScale(),ox=selOX();let best=null,bd=1e9;EVF().forEach(r=>{const cx=ts.timeToCoordinate(r.t);if(cx==null)return;const d=Math.abs(cx+ox-x);if(d<bd){bd=d;best=r.t}});return best};
+function selStats(d0,d1){
+ const r0=byT.get(d0),r1=byT.get(d1),spy=r=>r.pu.SPY,sg=n=>(n>=0?"+":"−")+usd(Math.abs(n)).replace("−","");
+ let V0,V1,flows=[],lblF,lblV="Valor en USD",qty="";
+ if(evAsset){const a=A.find(x=>x.t===evAsset),t=a.t;V0=r0.pos[t];V1=r1.pos[t];
+  flows=OPS.filter(o=>o.t===t&&!o.noQty&&o.tipo!=="Interés Nexo"&&o.d>d0&&o.d<=d1).map(o=>({d:o.d,f:Math.sign(o.q)*o.usd}));lblF="Compras − ventas";
+  if(!a.fixed){const q=r=>r.pu[t]>0?r.pos[t]/r.pu[t]:qAt(a,r.t),q0=q(r0),q1=q(r1),dq=q1-q0,f=n=>t==="BTC"?n.toLocaleString("es-AR",{minimumFractionDigits:4,maximumFractionDigits:4}):Math.round(n).toLocaleString("es-AR");
+   qty=`<dt>Posición</dt><dd>${f(q0)} → ${f(q1)} <span class="${dq>=0?"up":"down"}">(${dq>=0?"+":"−"}${f(Math.abs(dq))})</span></dd>`}}
+ else if(evMode==="bie"){V0=r0.bie;V1=r1.bie;lblV="Bienes"}
+ else{V0=r0[evMode];V1=r1[evMode];lblV=evMode==="pat"?"Patrimonio":"Cartera financiera";
+  flows=rows.filter(r=>r.t>d0&&r.t<=d1).map(r=>({d:r.t,f:evMode==="pat"?r.flowP:r.flow})).filter(x=>Math.abs(x.f)>1e-9);lblF="Aportes − retiros"}
+ const dV=V1-V0,pv=V0>0.5?` (${pct(dV/V0*100)})`:"";
+ let h=`<div class="sh"><b>${fdate(d0)} → ${fdate(d1)}</b><button type="button" aria-label="Cerrar">×</button></div><dl>${qty}<dt>${lblV}</dt><dd>${usd(V0)} → ${usd(V1)}</dd><dt>Variación</dt><dd class="${cls(dV)}">${sg(dV)}${pv}</dd>`;
+ if(lblF){const net=flows.reduce((s,x)=>s+x.f,0),g=dV-net;
+  let u=V0/spy(r0);flows.forEach(x=>{u+=x.f/spy(byT.get(x.d)||r0)});const gs=u*spy(r1)-V0-net,df=g-gs;
+  h+=`<dt>${lblF}</dt><dd>${Math.abs(net)<0.5?"—":sg(net)}</dd><dt><b>Ganancia o pérdida</b></dt><dd class="${cls(g)}"><b>${sg(g)}</b></dd><dt>Lo mismo en SPY</dt><dd class="${cls(gs)}">${sg(gs)}</dd><dt>Contra el SPY</dt><dd class="${cls(df)}">${sg(df)} ${df>=0?"mejor":"peor"}</dd>`}
+ return h+"</dl>"}
+function drawSel(){if(!SEL){selBox.hidden=selCard.hidden=true;return}
+ const ts=c1.timeScale(),ox=selOX(),a=ts.timeToCoordinate(SEL.d0),b=ts.timeToCoordinate(SEL.d1);if(a==null||b==null){selBox.hidden=selCard.hidden=true;return}
+ const H=c1el.clientHeight-ts.height(),l=Math.min(a,b)+ox,w=Math.max(2,Math.abs(b-a));
+ Object.assign(selBox.style,{left:l+"px",width:w+"px",height:H+"px"});selBox.hidden=false;
+ if(!SEL.html){selCard.hidden=true;return}
+ if(selCard.dataset.k!==SEL.d0+SEL.d1+evMode+evAsset){selCard.innerHTML=SEL.html;selCard.dataset.k=SEL.d0+SEL.d1+evMode+evAsset;selCard.querySelector("button").addEventListener("click",()=>{SEL=null;drawSel()})}
+ selCard.hidden=false;const cw=selCard.offsetWidth,W=c1el.clientWidth;
+ let x=l+w/2-cw/2;x=Math.min(Math.max(x,ox+4),W-c1.priceScale("right").width()-cw-4);selCard.style.left=x+"px";selCard.style.top="6px"}
+(()=>{let drag=null,timer=null;
+ const relX=e=>e.clientX-c1el.getBoundingClientRect().left;
+ const begin=x=>{drag={x0:x,t0:xToT(x)};c1el.classList.add("dragging")};
+ const move=x=>{if(!drag)return;const t1=xToT(x);if(!drag.t0||!t1)return;const[d0,d1]=[drag.t0,t1].sort();SEL={d0,d1};drawSel()};
+ const end=x=>{if(!drag)return;c1el.classList.remove("dragging");const moved=Math.abs(x-drag.x0)>5;drag=null;
+  if(!moved||!SEL||SEL.d0===SEL.d1){SEL=null;drawSel();return}SEL.html=selStats(SEL.d0,SEL.d1);selCard.dataset.k="";drawSel()};
+ c1el.addEventListener("pointerdown",e=>{if(selCard.contains(e.target)||e.button>0)return;const x=relX(e);
+  if(e.pointerType==="touch"){clearTimeout(timer);const sx=e.clientX,sy=e.clientY;timer=setTimeout(()=>{timer=null;begin(x)},350);timer.sx=sx;c1el._ts={sx,sy};return}
+  begin(x);c1el.setPointerCapture&&c1el.setPointerCapture(e.pointerId)});
+ c1el.addEventListener("pointermove",e=>{if(timer&&c1el._ts&&Math.hypot(e.clientX-c1el._ts.sx,e.clientY-c1el._ts.sy)>8){clearTimeout(timer);timer=null}move(relX(e))});
+ c1el.addEventListener("pointerup",e=>{clearTimeout(timer);timer=null;end(relX(e))});
+ c1el.addEventListener("pointercancel",()=>{clearTimeout(timer);timer=null;if(drag){drag=null;c1el.classList.remove("dragging")}});
+ c1el.addEventListener("touchmove",e=>{if(drag)e.preventDefault()},{passive:false});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&SEL){SEL=null;drawSel()}});
+ document.addEventListener("pointerdown",e=>{if(SEL&&!c1el.contains(e.target)){SEL=null;drawSel()}})})();
+c1.timeScale().subscribeVisibleLogicalRangeChange(()=>requestAnimationFrame(placeLbl));
+new ResizeObserver(()=>requestAnimationFrame(placeLbl)).observe(document.getElementById("c1"));
+const byT=new Map(rows.map(r=>[r.t,r]));
+const key=p=>typeof p==="string"?p:`${p.year}-${String(p.month).padStart(2,"0")}-${String(p.day).padStart(2,"0")}`;
+const lg=document.getElementById("lg");
+const showLg=r=>{if(evAsset){const a=A.find(x=>x.t===evAsset),pu=r.pu[a.t],v=r.pos[a.t],q=pu?v/pu:0;
+  lg.innerHTML=`<span>${fdate(r.t)}${r.live?" · en curso":""}</span><span>${a.t} <b>${usd(v,a.fixed?2:0)}</b></span>`+(a.fixed?"":`<span>Precio <b>${usd(pu,2)}</b></span>`+(r.pa[a.t]?`<span>En pesos <b>${ars(r.pa[a.t])}</b></span>`:"")+`<span>Cantidad <b>${a.t==="BTC"?q.toLocaleString("es-AR",{maximumFractionDigits:8}):Math.round(q).toLocaleString("es-AR")}</b></span>`)+`<span>Peso en la cartera <b>${r.tot?(v/r.tot*100).toFixed(1).replace(".",","):"0"}%</b></span>`;return}
+ if(evMode==="bie"){lg.innerHTML=`<span>${fdate(r.t)}${r.live?" · en curso":""}</span><span>Bienes <b>${usd(r.bie)}</b></span>`+INM.filter(x=>r.t>=x.d||bVal(x,r.t)>0).map(x=>`<span>${x.n} <b>${usd(bVal(x,r.t))}</b></span>`).join("")+(r.min?`<span>Mineros <b>${usd(r.min)}</b></span>`:"")+(r.deu?`<span>Deuda del auto <b>−${usd(r.deu)}</b></span><span>Bienes netos <b>${usd(r.bin)}</b></span>`:"");return}const cap=evMode==="pat"?r.capP:r.capT,g=r[evMode]-cap;lg.innerHTML=`<span>${fdate(r.t)}${r.live?" · en curso":""}</span><span>${evMode==="pat"?"Patrimonio":"Cartera"} <b>${usd(r[evMode])}</b></span><span>Ganancia <b class="${cls(g)}">${g>=0?"+":"−"}${usd(Math.abs(g))}</b></span>`+CLS.filter(c=>Math.abs(r.byC[c])>=0.5).map(c=>`<span>${c.split(" ·")[0]} <b>${usd(r.byC[c])}</b></span>`).join("")+(evMode==="pat"?`<span>Bienes netos <b>${usd(r.bin)}</b></span>`+`<span>Mineros <b>${usd(r.min)}</b></span>`+(r.inm?`<span>Terreno y auto <b>${usd(r.inm)}</b></span>`:"")+(r.deu?`<span>Deuda del auto <b>−${usd(r.deu)}</b></span>`:""):"")+`<span>MEP <b>${ars(r.mep)}</b></span><span>BTC <b>${usd(r.pu.BTC)}</b></span>`};
+(()=>{const el=document.getElementById("evmode");el.innerHTML=`<button data-m="tot">Cartera financiera</button><button data-m="bie">Bienes</button><button data-m="pat">Patrimonio total</button>`;const bs=[...el.children];const set=m=>{bs.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.m===m)));setEv(m)};window.__evSet=set;bs.forEach(b=>b.addEventListener("click",()=>{evAsset=null;set(b.dataset.m)}));set("tot")})();
+window.__evPick=t=>{evAsset=t;evKind="pos";window.__evSet(evAsset?"tot":evMode);requestAnimationFrame(()=>c1.timeScale().fitContent())};
+c1.subscribeCrosshairMove(p=>{const r=p.time&&byT.get(key(p.time));showLg(r||L)});
+
+// listado de activos financieros del mes en curso, al costado de Evolución: un clic muestra solo ese activo
+function renderEvList(){const el=document.getElementById("evlist");if(!el)return;
+ const mes=L.t.slice(0,7),rm=rows.filter(r=>r.t.slice(0,7)===mes);
+ const act=A.filter(a=>rm.some(r=>r.pos[a.t]>0.5)).sort((x,y)=>L.pos[y.t]-L.pos[x.t]);
+ const r0=EVF()[0]||rows[0];
+ const vr=a=>{if(a.fixed)return"";const p0=r0.pu[a.t],p1=L.pu[a.t];if(!(p0>0)||!(p1>0))return"";const v=(p1/p0-1)*100;return `<span class="vr ${cls(v)}" title="Variación del precio en USD desde ${fdate(r0.t)}">${pct(v)}</span>`};
+ el.innerHTML=`<div class="evh">Activos financieros de ${["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"][+mes.slice(5)-1]} · variación del precio desde ${fdate(r0.t)}</div>`+
+  `<button data-t="" aria-pressed="${!evAsset}"><span class="dot" style="background:var(--accent)"></span><span class="tk2">Toda la cartera</span><span class="vl">${usd(L.tot)}</span><span class="nm">Valor total</span></button><div class="sep"></div>`+
+  act.map(a=>`<button data-t="${a.t}" aria-pressed="${evAsset===a.t}" title="${a.n}"><span class="dot" style="background:${col(a.t)}"></span><span class="tk2">${a.t}</span><span class="vl">${usd(L.pos[a.t])}</span><span class="nm">${a.n}</span>${vr(a)}</button>`).join("");
+ [...el.querySelectorAll("button")].forEach(b=>b.addEventListener("click",()=>{const t=b.dataset.t||null;window.__evPick&&window.__evPick(evAsset===t?null:t)}))}
+
+const c2=mk("c2",p=>p.toFixed(0));
+let lines={};
+const lg2=document.getElementById("lg2");
+let base=rows[0];
+let bT={};function setBase(b){base=b;const from=rows.indexOf(b);CH.forEach(t=>{const bb=rows.slice(from).find(r=>r.pu[t]>0);bT[t]=bb;lines[t].setData(bb?[bb,...MROWS.filter(r=>r.t>bb.t)].map(r=>({time:r.t,value:+(r.pu[t]/bb.pu[t]*100).toFixed(2)})):[])});showLg2(L);c2.timeScale().fitContent()}
+CH.forEach(t=>{lines[t]=c2.addLineSeries({color:col(t),lineWidth:2,priceLineVisible:false,lastValueVisible:true})});
+const showLg2=r=>{lg2.innerHTML=`<span>${fdate(r.t)}</span>`+CH.map(t=>{const bb=bT[t];if(!bb||!r.pu[t]||r.t<bb.t)return "";const v=r.pu[t]/bb.pu[t]*100-100;return `<span><span style="color:${col(t)}">●</span> ${t} <b class="${cls(v)}">${pct(v)}</b>${bb.t>base.t?` <span style="opacity:.7">desde ${fdate(bb.t)}</span>`:""}</span>`}).join("")};
+const h2=hintFor("c2");
+c2.subscribeCrosshairMove(p=>{const r=p.time&&byT.get(key(p.time));showLg2(r&&r.t>=base.t?r:L);
+ if(!p.point||!p.time){h2.hide();return}
+ let best=null;CH.forEach(t=>{const d=p.seriesData.get(lines[t]);if(!d)return;const y=lines[t].priceToCoordinate(d.value);if(y==null)return;const dist=Math.abs(y-p.point.y);if(!best||dist<best.dist)best={t,v:d.value,dist}});
+ if(!best||best.dist>40){h2.hide();return}
+ const a=A.find(x=>x.t===best.t),ch=best.v-100;h2.show(p.point.x,p.point.y,`<b style="color:${col(best.t)}">● ${best.t}</b> · ${a.n}<br>${fdate(r.t)} · <span class="num ${cls(ch)}">${pct(ch)}</span> desde ${fdate(bT[best.t].t)}<br>Precio <span class="num">${usd(r.pu[best.t],best.t==="BTC"?0:2)}</span>`)});
+
+// composición en el tiempo: área apilada 100% o líneas
+const c3=mk("c3",p=>p.toFixed(0)+"%");
+c3.applyOptions({rightPriceScale:{scaleMargins:{top:.05,bottom:0}},crosshair:{mode:1},handleScroll:false,handleScale:false});
+let mixFrom="0000";const MF=()=>MROWS.filter(r=>r.t>=mixFrom);let mix=[],mixMode="tipo",mixView="area",mixSel={tipo:null,activo:null};
+const mixAll=()=>mixMode==="tipo"?TYPES.filter(T=>A.some(a=>a.tipo===T.k)).map(T=>({k:T.k,c:css(T.cv),val:r=>A.filter(a=>a.tipo===T.k).reduce((s,a)=>s+r.pos[a.t],0)})):
+ TYPES.flatMap(T=>A.filter(a=>a.tipo===T.k&&MROWS.some(r=>r.pos[a.t]>0)).map(a=>({k:a.t,c:col(a.t),val:r=>r.pos[a.t]})));
+const mixKeys=()=>{const s=mixSel[mixMode];return mixAll().filter(k=>!s||s.has(k.k))};
+const allSel=()=>{const s=mixSel[mixMode];return !s||mixAll().every(k=>s.has(k.k))};
+// base del porcentaje: en área, la suma de lo elegido (siempre 100%); en líneas, el total de la cartera
+const mixBase=r=>mixView==="area"?mixKeys().reduce((a,k)=>a+k.val(r),0):r.tot;
+const sh=(k,r)=>{const b=mixBase(r);return b>0?k.val(r)/b*100:0};
+function drawMix(){
+ document.getElementById("mixnote").textContent=mixView==="lines"?"valores en USD":!allSel()?"% sobre lo elegido (suma 100%)":"% sobre la cartera financiera";
+ c3.applyOptions({localization:{priceFormatter:mixView==="lines"?(p=>"US$ "+p.toLocaleString("es-AR",{maximumFractionDigits:0})):(p=>p.toFixed(0)+"%")}});
+ paintSel();mix.forEach(s=>c3.removeSeries(s));mix=[];const K=mixKeys();
+ if(mixView==="area"){
+  for(let j=K.length-1;j>=0;j--){const s=c3.addAreaSeries({lineWidth:1,lineColor:K[j].c,topColor:K[j].c,bottomColor:K[j].c,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false,autoscaleInfoProvider:()=>({priceRange:{minValue:0,maxValue:100}})});
+   s.setData(MF().map(r=>{const b=mixBase(r);return b>0?{time:r.t,value:+(K.slice(0,j+1).reduce((a,k)=>a+k.val(r),0)/b*100).toFixed(3)}:{time:r.t}}));s._k=K[j];mix.push(s)}}
+ else{K.forEach(k=>{const s=c3.addLineSeries({color:k.c,lineWidth:2,priceLineVisible:false,lastValueVisible:true,crosshairMarkerRadius:3,autoscaleInfoProvider:orig=>{const r=orig();if(r&&r.priceRange)r.priceRange.minValue=0;return r}});
+   s.setData(MF().map(r=>({time:r.t,value:+k.val(r).toFixed(2)})));s._k=k;mix.push(s)})}
+ requestAnimationFrame(()=>c3.timeScale().fitContent());showLg3(L)}
+const lg3=document.getElementById("lg3");
+const showLg3=r=>{const K=mixKeys();lg3.innerHTML=`<span>${fdate(r.t)}${r.live?" · en curso":""}</span>`+K.map(k=>`<span><span style="color:${k.c}">${mixView==="area"?"■":"●"}</span> ${k.k} <b>${mixView==="lines"?usd(k.val(r)):f1(sh(k,r))}</b></span>`).join("")};
+const h3=hintFor("c3");
+c3.subscribeCrosshairMove(p=>{const r=p.time&&byT.get(key(p.time));showLg3(r||L);
+ if(!p.point||!r||!mix.length){h3.hide();return}
+ let hit=null;
+ if(mixView==="area"){const v=mix[0].coordinateToPrice(p.point.y);if(v==null||v<0||v>100){h3.hide();return}
+  let acc=0;for(const k of mixKeys()){const s=sh(k,r);if(v>=acc&&v<acc+s){hit={k,s};break}acc+=s}}
+ else{let best=null;mix.forEach(s=>{const d=p.seriesData.get(s);if(!d)return;const y=s.priceToCoordinate(d.value);if(y==null)return;const dist=Math.abs(y-p.point.y);if(!best||dist<best.dist)best={k:s._k,s:d.value,dist}});if(best&&best.dist<=40)hit=best}
+ if(!hit){h3.hide();return}
+ const a=A.find(x=>x.t===hit.k.k);h3.show(p.point.x,p.point.y,mixView==="lines"?`<b style="color:${hit.k.c}">● ${hit.k.k}</b>${a?" · "+a.n:""}<br>${fdate(r.t)} · <span class="num">${usd(hit.k.val(r))}</span>`:`<b style="color:${hit.k.c}">■ ${hit.k.k}</b>${a?" · "+a.n:""}<br>${fdate(r.t)} · <span class="num">${f1(hit.s)}</span> ${!allSel()?"de lo elegido":"de la cartera"}<br><span class="num">${usd(hit.k.val(r))}</span>`)});
+// selector de series
+function paintSel(){const el=document.getElementById("mixsel"),s=mixSel[mixMode];
+ el.innerHTML=mixAll().map(k=>{const on=!s||s.has(k.k);return `<button data-k="${k.k}" aria-pressed="${on}"><span class="sw" style="background:${on?k.c:"transparent"};border:1.5px solid ${k.c}"></span>${k.k}</button>`}).join("")+(allSel()?"":`<button data-k="*" class="all">Todos</button>`)}
+document.getElementById("mixsel").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const all=mixAll().map(k=>k.k);
+ if(b.dataset.k==="*"){mixSel[mixMode]=null}else{const s=new Set(mixSel[mixMode]||all);if(s.has(b.dataset.k)){if(s.size===1)return;s.delete(b.dataset.k)}else s.add(b.dataset.k);mixSel[mixMode]=s.size===all.length?null:s}
+ drawMix()});
+(()=>{const el=document.getElementById("mixmode");el.innerHTML=`<button data-m="tipo">Por tipo</button><button data-m="activo">Por activo</button>`;const bs=[...el.children];const set=m=>{mixMode=m;bs.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.m===m)));drawMix()};bs.forEach(b=>b.addEventListener("click",()=>set(b.dataset.m)));set("tipo")})();
+(()=>{const el=document.getElementById("mixview");el.innerHTML=`<button data-v="area">Área 100%</button><button data-v="lines">Líneas</button>`;const bs=[...el.children];const set=v=>{mixView=v;bs.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===v)));drawMix();try{localStorage.setItem("mixView",v)}catch(e){}};bs.forEach(b=>b.addEventListener("click",()=>set(b.dataset.v)));let v="area";try{v=localStorage.getItem("mixView")||"area"}catch(e){}set(v==="lines"?"lines":"area")})();
+
+function seg(id,cb,def){const el=document.getElementById(id);el.innerHTML=["1M","3M","6M","1A"].map(k=>`<button data-k="${k}">${k==="1A"?"Todo":k}</button>`).join("");const bs=[...el.children];const set=k=>{bs.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.k===k)));cb(k)};bs.forEach(b=>b.addEventListener("click",()=>set(b.dataset.k)));set(def)}
+// "Desde": control deslizante por mes (con marcas por año) para Evolución y Cambio de composición
+function desde(id,pts,cb){const el=document.getElementById(id);const ms=[...new Set(pts.map(r=>r.t.slice(0,7)))];const max=Math.max(0,ms.length-3);
+ const ticks=ms.map((m,i)=>m.endsWith("-01")&&i<=max?`<span class="tick" style="left:${max?i/max*100:0}%">${m.slice(0,4)}</span>`:"").join("");
+ el.innerHTML=`<label for="${id}R">Desde <b></b></label><div class="rail"><input type="range" id="${id}R" min="0" max="${max}" step="1" value="0" aria-valuetext="">${ticks}</div>`;
+ const inp=el.querySelector("input"),lb=el.querySelector("label b");
+ const apply=()=>{const m=ms[+inp.value],txt=MES[+m.slice(5)-1]+" "+m.slice(0,4);lb.textContent=txt;inp.setAttribute("aria-valuetext",txt);
+  // el primer punto es el cierre del mes anterior (valor al empezar el mes elegido)
+  const prev=pts.filter(r=>r.t<m+"-01").at(-1);cb(prev?prev.t:pts[0].t)};
+ inp.addEventListener("input",apply);apply()}
+
+// producción minera
+const c4=mk("c4",p=>p.toLocaleString("es-AR",{maximumFractionDigits:5}));
+c4.applyOptions({localization:{locale:"es-AR"},leftPriceScale:{visible:true,borderVisible:false,scaleMargins:{top:.1,bottom:.05}},rightPriceScale:{scaleMargins:{top:.1,bottom:.05}}});
+const MOPS=OPS.filter(o=>o.tipo==="Minería"),COPS=OPS.filter(o=>o.tipo==="Costo minería"),ym=d=>d.slice(0,7);
+const PM=(()=>{const m0=[...MOPS,...COPS].map(o=>ym(o.d)).sort()[0],m1=ym(L.t);const out=[];let [y,m]=m0.split("-").map(Number);let acc=0,accB=0;
+ while(`${y}-${String(m).padStart(2,"0")}`<=m1){const k=`${y}-${String(m).padStart(2,"0")}`,ps=MOPS.filter(o=>ym(o.d)===k),btc=ps.reduce((s,o)=>s+o.q,0),u=ps.reduce((s,o)=>s+(o.usd||0),0),c=COPS.filter(o=>ym(o.d)===k).reduce((s,o)=>s+o.usd,0);acc+=u-c;accB+=u;out.push({k,btc,usd:u,cost:c,net:u-c,n:ps.length,acc,accB});m++;if(m>12){m=1;y++}}return out})();
+const MES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"],mlab=k=>MES[+k.slice(5)-1]+" "+k.slice(2,4);
+let pMode="usd",pFrom="0000";const PMF=()=>{const z=PM.filter(p=>p.k>=pFrom);return z.length?z:PM.slice(-1)};
+const hist=c4.addHistogramSeries({priceScaleId:"right",priceLineVisible:false,lastValueVisible:false});
+const histC=c4.addHistogramSeries({priceScaleId:"right",priceLineVisible:false,lastValueVisible:false});
+const rec=c4.addLineSeries({priceScaleId:"left",lineWidth:2,priceLineVisible:false,lastValueVisible:true});
+function drawProd(){const btc=pMode==="btc";
+ hist.applyOptions({color:css("--t-prod"),priceFormat:btc?{type:"price",precision:4,minMove:0.0001}:{type:"price",precision:0,minMove:1}});histC.applyOptions({color:css("--down"),priceFormat:{type:"price",precision:0,minMove:1}});rec.applyOptions({color:css("--accent")});
+ hist.setData(PMF().map(p=>({time:p.k+"-01",value:btc?+p.btc.toFixed(8):+p.usd.toFixed(2)})));
+ histC.setData(btc?[]:PMF().map(p=>({time:p.k+"-01",value:-(+p.cost.toFixed(2))})));
+ rec.setData(PMF().map(p=>({time:p.k+"-01",value:+(p.acc/MIN.costo*100).toFixed(2)})));c4.timeScale().fitContent();showLg4(PM.at(-1))}
+const lg4=document.getElementById("lg4");
+const showLg4=p=>{lg4.innerHTML=`<span>${mlab(p.k)}</span><span><span style="color:${css("--t-prod")}">■</span> Minado <b>${b8(p.btc)} BTC</b> · <b>${usd(p.usd,2)}</b></span><span><span style="color:${css("--down")}">■</span> Luz y seguro <b>${usd(p.cost,2)}</b></span><span>Neto <b class="${cls(p.net)}">${usd(p.net,2)}</b></span><span><span style="color:${css("--accent")}">—</span> Recupero neto acumulado <b>${f1(p.acc/MIN.costo*100)}</b></span>`};
+c4.subscribeCrosshairMove(x=>{if(!x.time){showLg4(PM.at(-1));return}const k=key(x.time).slice(0,7);const p=PM.find(z=>z.k===k);if(p)showLg4(p)});
+(()=>{const el=document.getElementById("pmode");el.innerHTML=`<button data-m="usd">En USD (con costos)</button><button data-m="btc">En BTC</button>`;const bs=[...el.children];const set=m=>{pMode=m;bs.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.m===m)));drawProd()};bs.forEach(b=>b.addEventListener("click",()=>set(b.dataset.m)));set("usd")})();
+(()=>{const tb=MOPS.reduce((s,o)=>s+o.q,0),tu=MOPS.reduce((s,o)=>s+(o.usd||0),0),tc=COPS.reduce((s,o)=>s+o.usd,0),con=PM.filter(p=>p.btc>0),posN=PM.filter(p=>p.btc>0||p.cost>0);
+ document.getElementById("pk").innerHTML=[["BTC minado total",b8(tb),`${MOPS.length} pagos · ${con.length} meses con cobro`],["Producción al cobrar",usd(tu),"hoy valdría "+usd(tb*L.pu.BTC)],["Luz y seguro",usd(tc),`${COPS.length} pagos en USDT`],["Resultado neto",`<b class="${cls(tu-tc)}">${usd(tu-tc)}</b>`,"≈ "+usd((tu-tc)/posN.length)+" por mes"],["Recupero neto",f1((tu-tc)/MIN.costo*100),"del costo de los equipos ("+usd(MIN.costo)+")"]]
+ .map(([k,s,e])=>`<div><span>${k}</span><strong>${s}</strong><em>${e}</em></div>`).join("");
+ document.getElementById("ptbl").innerHTML=`<thead><tr><th>Mes</th><th>Pagos</th><th>BTC minado</th><th>Producción al cobrar</th><th>Luz y seguro</th><th>Neto del mes</th><th>Recupero neto acumulado</th></tr></thead><tbody>`+
+ PM.slice().reverse().map(p=>`<tr><td>${mlab(p.k)}</td><td>${p.n||"—"}</td><td>${p.btc?b8(p.btc):"—"}</td><td>${p.btc?usd(p.usd,2):"—"}</td><td>${p.cost?"−"+usd(p.cost,2):"—"}</td><td class="${cls(p.net)}">${usd(p.net,2)}</td><td>${f1(p.acc/MIN.costo*100)}</td></tr>`).join("")+`</tbody>`;})();
+
+// aportes y retiros
+(()=>{const ops=OPS.filter(o=>o.flow&&o.d>rows[0].t);const m0=rows[0].t.slice(0,7),m1=L.t.slice(0,7);const FL=[];let [y,m]=m0.split("-").map(Number);
+ while(true){const k=`${y}-${String(m).padStart(2,"0")}`;if(k>m1)break;const os=ops.filter(o=>o.d.slice(0,7)===k).sort((a,b)=>a.d<b.d?-1:1);
+  const ap=os.filter(o=>o.flow>0&&o.tipo!=="Minería").reduce((s,o)=>s+o.flow,0),rm=os.filter(o=>o.tipo==="Minería").reduce((s,o)=>s+o.flow,0),rv=os.filter(o=>o.flow<0&&o.tipo!=="Costo minería"&&!o.dest).reduce((s,o)=>s-o.flow,0),rt=os.filter(o=>o.flow<0&&o.dest).reduce((s,o)=>s-o.flow,0),rc=os.filter(o=>o.tipo==="Costo minería").reduce((s,o)=>s-o.flow,0);
+  const end=rows.filter(r=>r.t.slice(0,7)===k).at(-1);FL.push({k,os,ap,rm,rv,rt,rc,net:ap+rm-rv-rt-rc,end});m++;if(m>12){m=1;y++}}
+ const c5=mk("c5",p=>p.toLocaleString("es-AR",{maximumFractionDigits:0}));
+ const hAp=c5.addHistogramSeries({priceLineVisible:false,lastValueVisible:false}),hRm=c5.addHistogramSeries({priceLineVisible:false,lastValueVisible:false}),hRt=c5.addHistogramSeries({priceLineVisible:false,lastValueVisible:false}),hTe=c5.addHistogramSeries({priceLineVisible:false,lastValueVisible:false}),hRc=c5.addHistogramSeries({priceLineVisible:false,lastValueVisible:false});
+ const c6=mk("c6",p=>p.toLocaleString("es-AR",{maximumFractionDigits:0}));
+ const vA=c6.addAreaSeries({lineWidth:2,priceLineVisible:false,pointMarkersVisible:true,pointMarkersRadius:2.5}),cL=c6.addLineSeries({lineWidth:2,lineStyle:2,priceLineVisible:false,pointMarkersVisible:true,pointMarkersRadius:2.5});
+ let R=null; // período elegido
+ const paint=()=>{hAp.applyOptions({color:css("--up")});hRm.applyOptions({color:css("--t-prod")});hRt.applyOptions({color:css("--down")});hTe.applyOptions({color:css("--t-inm")});hRc.applyOptions({color:css("--t-cri")});
+  vA.applyOptions({lineColor:css("--accent"),topColor:css("--accent-soft"),bottomColor:"rgba(0,0,0,0)"});cL.applyOptions({color:css("--ink2")})};
+ const draw=()=>{paint();if(!R)return;const fs=FL.filter(f=>f.k>=R.a&&f.k<=R.b);
+  hAp.setData(fs.map(f=>({time:f.k+"-01",value:+(f.ap+f.rm).toFixed(2)})));hRm.setData(fs.map(f=>({time:f.k+"-01",value:+f.rm.toFixed(2)})));hRt.setData(fs.map(f=>({time:f.k+"-01",value:-(+(f.rv+f.rt+f.rc).toFixed(2))})));hTe.setData(fs.map(f=>({time:f.k+"-01",value:-(+(f.rt+f.rc).toFixed(2))})));hRc.setData(fs.map(f=>({time:f.k+"-01",value:-(+f.rc.toFixed(2))})));
+  const r0=rows.find(r=>r.t===R.d0)||rows[0],rs=[r0,...MROWS.filter(r=>r.t>r0.t&&r.t<=R.d1)],base=rs[0].tot-rs[0].capT; // el capital del período arranca en el valor inicial del período
+  vA.setData(rs.map(r=>({time:r.t,value:+r.tot.toFixed(2)})));cL.setData(rs.map(r=>({time:r.t,value:+(r.capT+base).toFixed(2)})));
+  c5.timeScale().fitContent();c6.timeScale().fitContent();R.base=base;R.rs=rs;R.fs=fs;kpi();tbl();showLg5(fs.at(-1));showLg6(rs.at(-1))};
+ const lg5=document.getElementById("lg5"),lg6=document.getElementById("lg6");
+ const showLg5=f=>{if(!f)return;lg5.innerHTML=`<span>${mlab(f.k)}</span><span><span class="sw-ap">■</span> Aportes <b>${usd(f.ap)}</b></span><span><span class="sw-rm">■</span> BTC minado <b>${usd(f.rm)}</b></span><span><span class="sw-rv">■</span> Retiros <b>${usd(f.rv)}</b></span><span><span class="sw-rt">■</span> A la compra de bienes <b>${usd(f.rt)}</b></span><span><span class="sw-rc">■</span> Luz y seguro <b>${usd(f.rc)}</b></span><span>Neto <b class="${cls(f.net)}">${f.net>=0?"+":""}${usd(f.net)}</b></span>`};
+ const showLg6=r=>{if(!r)return;const cap=r.capT+R.base,g=r.tot-cap;lg6.innerHTML=`<span>${fdate(r.t)}</span><span><span style="color:var(--accent)">■</span> Valor de la cartera <b>${usd(r.tot)}</b></span><span><span style="color:var(--ink2)">┅</span> Capital neto <b>${usd(cap)}</b></span><span>Ganancia <b class="${cls(g)}">${g>=0?"+":""}${usd(g)}</b></span>`};
+ c5.subscribeCrosshairMove(x=>{if(!R)return;if(!x.time){showLg5(R.fs.at(-1));return}const k=key(x.time).slice(0,7);const f=R.fs.find(z=>z.k===k);if(f)showLg5(f)});
+ c6.subscribeCrosshairMove(x=>{if(!R)return;if(!x.time){showLg6(R.rs.at(-1));return}const t=key(x.time);const r=R.rs.find(z=>z.t===t);if(r)showLg6(r)});
+ const kpi=()=>{const fs=R.fs,rm=fs.reduce((s,f)=>s+f.rm,0),ap=fs.reduce((s,f)=>s+f.ap,0)+rm,rv=fs.reduce((s,f)=>s+f.rv,0),rt=fs.reduce((s,f)=>s+f.rt,0),rc=fs.reduce((s,f)=>s+f.rc,0),p0=R.rs[0].tot,cap=p0+ap-rv-rt-rc,v=R.rs.at(-1).tot,g=v-cap;
+  document.getElementById("fk").innerHTML=[["Valor al "+fdate(R.rs[0].t),usd(p0),R.rs[0].t===rows[0].t?"incluye saldos iniciales estimados":"punto de partida del período"],["Aportes",`<b class="up">+${usd(ap)}</b>`,`compras y billetes ${usd(ap-rm)} · BTC minado ${usd(rm)}`],["Retiros",`<b class="down">−${usd(rv+rt+rc)}</b>`,`ventas ${usd(rv)}${rt?` · a la compra de bienes ${usd(rt)}`:""} · luz y seguro ${usd(rc)}`],["Capital neto",usd(cap),"valor inicial + aportes − retiros"],["Valor al "+fdate(R.rs.at(-1).t),usd(v),R.rs.at(-1).live?"en curso":"al cierre"],["Ganancia",`<b class="${cls(g)}">${g>=0?"+":""}${usd(g)}</b>`,"valor − capital neto"]]
+  .map(([k,s,e])=>`<div><span>${k}</span><strong>${s}</strong><em>${e}</em></div>`).join("")};
+ const tbl=()=>{const fs=R.fs.filter(f=>f.os.length).slice().reverse();const t=document.getElementById("ftbl");
+  t.innerHTML=`<thead><tr><th>Mes</th><th>Aportes</th><th>Retiros</th><th>Neto del mes</th><th>Capital neto al cierre</th><th>Valor al cierre</th></tr></thead><tbody>`+
+  (fs.length?fs.map(f=>`<tr class="fm" data-k="${f.k}" tabindex="0" aria-expanded="false"><td>${mlab(f.k)} <span style="color:var(--muted);font-size:12px">· ${f.os.length}</span></td><td>${f.ap+f.rm?"+"+usd(f.ap+f.rm,2):"—"}</td><td>${f.rv+f.rt+f.rc?"−"+usd(f.rv+f.rt+f.rc,2):"—"}</td><td class="${cls(f.net)}">${f.net>=0?"+":""}${usd(f.net,2)}</td><td>${usd(f.end.capT+R.base)}</td><td>${usd(f.end.tot)}</td></tr>`+
+   (()=>{const G=new Map();f.os.forEach(o=>{const c=o.tipo==="Costo minería"?5:o.tipo==="Minería"?2:o.flow>0?1:o.dest?4:3,k=c+"|"+o.tipo+"|"+(o.flow>0?"+":"-");if(!G.has(k))G.set(k,{c,tipo:o.tipo,os:[]});G.get(k).os.push(o)});
+  return [...G.values()].sort((a,b)=>a.c-b.c).map(g=>{const tot=g.os.reduce((s,o)=>s+o.flow,0),by=new Map();g.os.forEach(o=>by.set(o.t,(by.get(o.t)||0)+o.flow));
+   const lab=g.c===2?"BTC minado":g.c===5?"Luz y seguro":g.c===4?"Compra de bienes":g.tipo==="Venta"?"Ventas":g.tipo==="Compra"?"Compras":g.tipo;
+   const det=[...by].sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).map(([t,v])=>`${t} ${usd(Math.abs(v))}`).join(" · ");
+   const cells=[1,2].map(i=>`<td>${i===(g.c<=2?1:2)?(tot>0?"+":"−")+usd(Math.abs(tot),2):""}</td>`).join("");
+   return `<tr class="fo" data-p="${f.k}" hidden><td>${lab} <span style="color:var(--muted)">· ${g.os.length} ${g.os.length===1?"movimiento":"movimientos"}</span>${by.size>1?`<small>${det}</small>`:` <span style="color:var(--muted)">· ${[...by.keys()][0]}</span>`}</td>${cells}<td></td><td></td><td></td></tr>`}).join("")})()).join(""):`<tr><td colspan="6" style="color:var(--muted)">Sin aportes ni retiros en el período</td></tr>`)+`</tbody>`;
+  t.querySelectorAll("tr.fm").forEach(tr=>{const tg=()=>{const op=!tr.classList.contains("open");tr.classList.toggle("open",op);tr.setAttribute("aria-expanded",String(op));t.querySelectorAll(`tr.fo[data-p="${tr.dataset.k}"]`).forEach(x=>x.hidden=!op)};tr.addEventListener("click",tg);tr.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();tg()}})})};
+ // período: desde el mes elegido en la cabecera hasta hoy
+ const lastK=FL.at(-1).k;const prevEnd=k=>{const r=rows.filter(r=>r.t.slice(0,7)<k).at(-1);return r?r.t:rows[0].t};
+ const setFrom=m=>{const a=m<FL[0].k?FL[0].k:m;R={a,b:lastK,d0:prevEnd(a),d1:L.t};draw()};
+ window.__flujos={setFrom,redraw:()=>{if(R){c5.timeScale().fitContent();c6.timeScale().fitContent()}},retheme:()=>{paint()},charts:[c5,c6]};
+})();
+
+// bienes (pestaña Otros activos)
+(()=>{const box=document.getElementById("ibox");if(!INM.length){box.parentElement.hidden=true;return}
+ box.innerHTML=INM.map((x,i)=>{const v=bVal(x,L.t),ops=OPS.filter(o=>o.dest===x.n),paid=ops.reduce((s,o)=>s-o.flow,0),pct=L.pat?v/L.pat*100:0;
+  const ventas=ops.filter(o=>o.tipo==="Venta").length;
+  const P=PAS.find(p=>p.bien===x.n);if(P){const de=debtVal(L.t),pp=pasPend(P,L.t),kk=[["Valor del auto",usd(v),`nuevo ${usd(x.vn)} (valor móvil $ ${Math.round(P.vm).toLocaleString("es-AR")}) · baja ${x.dep}% por año`],["Deuda del plan","−"+usd(de),`${pp} cuotas × alícuota $ ${P.alic.toLocaleString("es-AR",{minimumFractionDigits:2})}`],["Tu parte",usd(v-de),"valor − deuda · "+f1((v-de)/L.pat*100)+" del patrimonio"],["Cuotas",`${P.tot-pp} de ${P.tot}`,P.tipo],["Pagado desde la cartera",usd(paid),`adelanto · ${ventas} ventas`]];
+   return `<div class="subbar"${i?"":' style="border-top:0"'}><h3>${x.n}</h3></div><div class="kgrid" style="margin-top:10px">${kk.map(([a,b,c])=>`<div><span>${a}</span><strong>${b}</strong><em>${c}</em></div>`).join("")}</div><div class="mtext"><p>${x.origen}.</p><p><b>Cómo se computa.</b> El auto figura por su valor completo: el valor móvil del plan (precio del 0 km) pasado a dólares, con una baja de ${x.dep}% por año desde la entrega. Lo que falta pagar es un <b>pasivo</b>: cuotas pendientes × alícuota (la cuota pura, sin gastos administrativos, seguros ni impuestos, que son costos del mes). El patrimonio neto cuenta la diferencia. Cada cuota que pagás con tu sueldo baja la deuda en ${usd(P.cu)} y entra al patrimonio como aporte; no toca los activos financieros. La deuda se expresa en dólares con el MEP de referencia: como sigue al precio del auto, se actualiza con cada resumen del plan (alicuota_ars y mep_referencia en datos/tenencias.json).</p></div>`}
+  const k=[["Valor",usd(v),x.dep?`baja ${String(x.dep).replace(".",",")}% por año desde la compra`:(x.dv===x.d?"al costo de compra":"revaluado al "+fdate(x.dv))],["Costo",usd(x.costo),"compra del "+fdate(x.d)+(x.n!=="Terreno"?" (estimada)":"")],["Resultado",`<b class="${cls(v-x.costo)}">${v-x.costo>=0?"+":"−"}${usd(Math.abs(v-x.costo))}</b>`,"valor − costo"],["Peso en el patrimonio",f1(pct),"de "+usd(L.pat)],["Pagado desde la cartera",usd(paid),x.n==="Terreno"?"USD de Balanz + dólares comprados con pesos":ops.length===1?"con USD en Balanz":ventas+" ventas"]];
+  const txt=x.n==="Terreno"?`<p>${x.origen}. Se registra a valor de compra: no se amortiza. Para revaluarlo, se actualiza <b>valor_usd</b> y <b>fecha_valuacion</b> en datos/tenencias.json.</p><p>En el patrimonio neto, el bien se suma a medida que sale la plata para pagarlo (movimientos con destino), así que esos retiros no aparecen como pérdida. Desde la fecha de compra vale valor_usd.</p>`
+   :`<p>${x.origen}.</p><p>Se valúa por lo pagado con esas ventas (${usd(x.costo)}) y pierde ${String(x.dep).replace(".",",")}% de ese valor por año en línea recta. Mientras se pagaba, el auto se fue sumando al patrimonio con cada venta, así que esas ventas no aparecen como pérdida del patrimonio (en la cartera financiera siguen siendo retiros "a la compra de bienes"). <b>Pendiente:</b> las cuotas que faltan pagar son una deuda (pasivo) que hoy no está cargada; si me pasás el saldo, se resta del patrimonio neto.</p>`;
+  return `<div class="subbar"${i?"":' style="border-top:0"'}><h3>${x.n}</h3></div><div class="kgrid" style="margin-top:10px">${k.map(([a,b,c])=>`<div><span>${a}</span><strong>${b}</strong><em>${c}</em></div>`).join("")}</div><div class="mtext">${txt}</div>`}).join("")})();
+
+// selector "Desde" de la cabecera: define el inicio de todos los gráficos
+(()=>{const el=document.getElementById("gfrom");const ms=[...new Set(EVR.map(r=>r.t.slice(0,7)))];const max=Math.max(0,ms.length-3);
+ const ticks=ms.map((m,i)=>m.endsWith("-01")&&i<=max?`<span class="tick" style="left:${max?i/max*100:0}%">${m.slice(0,4)}</span>`:"").join("");
+ el.innerHTML=`<label for="gfromR">Gráficos desde <b></b></label><div class="rail"><input type="range" id="gfromR" min="0" max="${max}" step="1" value="0">${ticks}</div>`;
+ const inp=el.querySelector("input"),lb=el.querySelector("label b");
+ const prevT=(pts,m)=>{const p=pts.filter(r=>r.t<m+"-01").at(-1);return p?p.t:pts[0].t};
+ const apply=()=>{const m=ms[+inp.value],txt=MES[+m.slice(5)-1]+" "+m.slice(0,4);lb.textContent=txt;inp.setAttribute("aria-valuetext",txt);try{localStorage.setItem("desde",m)}catch(e){}
+  evFrom=prevT(EVR,m);setEv(evMode);requestAnimationFrame(()=>c1.timeScale().fitContent());
+  mixFrom=prevT(MROWS,m);drawMix();
+  const b=rows.find(r=>r.t===prevT(rows,m))||rows[0];setBase(b);
+  pFrom=m;drawProd();
+  window.__flujos&&window.__flujos.setFrom(m)};
+ let v=0;try{const s=localStorage.getItem("desde");const i=ms.indexOf(s);if(i>=0&&i<=max)v=i}catch(e){}
+ inp.value=v;inp.addEventListener("input",apply);apply()})();
+
+// leyendas como hint: el detalle aparece junto al mouse; arriba queda solo la referencia de colores
+function legendHint(chart,boxId,lgId,noKey){const lg=document.getElementById(lgId),src=document.createElement("div");src.hidden=true;lg.parentNode.appendChild(src);
+ const box=document.getElementById(boxId),h=document.createElement("div");h.className="hint lgh";h.hidden=true;box.appendChild(h);let over=false;
+ const key=()=>{const t=document.createElement("div");t.innerHTML=src.innerHTML;[...t.children].forEach(k=>{if(!k.querySelector("span"))k.remove()});t.querySelectorAll("b").forEach(b=>b.remove());lg.innerHTML=t.innerHTML.replace(/\s*·\s*(?=<\/span>)/g,"")};
+ // las funciones de leyenda siguen escribiendo en lg: se redirige su contenido a src
+ new MutationObserver(()=>{if(lg.dataset.k==="1"){lg.dataset.k="";return}src.innerHTML=lg.innerHTML;lg.dataset.k="1";key()}).observe(lg,{childList:true,subtree:true,characterData:true});
+ src.innerHTML=lg.innerHTML;lg.dataset.k="1";key();if(noKey)lg.parentNode.style.display="none";
+ chart.subscribeCrosshairMove(p=>{if(!p.point||!p.time){over=false;h.hidden=true;return}over=true;h.innerHTML=lg.innerHTML;h.hidden=false;const W=box.clientWidth,hw=h.offsetWidth,hh=h.offsetHeight;h.style.left=(p.point.x+16+hw>W?p.point.x-hw-16:p.point.x+16)+"px";h.style.top=Math.max(4,Math.min(p.point.y-hh/2,box.clientHeight-hh-4))+"px"})}
+legendHint(c1,"c1","lg",1);legendHint(c3,"c3","lg3",1);legendHint(c2,"c2","lg2");legendHint(c4,"c4","lg4");
+if(window.__flujos){legendHint(window.__flujos.charts[0],"c5","lg5");legendHint(window.__flujos.charts[1],"c6","lg6")}
+h2.show=()=>{};h3.show=()=>{};
+
+// ventana "Cómo se calcula"
+(()=>{const d=document.getElementById("dlgCalc");document.getElementById("infoBtn").addEventListener("click",()=>{d.showModal()});document.getElementById("dlgCalcX").addEventListener("click",()=>d.close());d.addEventListener("click",e=>{if(e.target===d)d.close()})})();
+
+// pestañas
+(()=>{const bs=[...document.querySelectorAll("#tabs button[role=tab]")],panes=[...document.querySelectorAll("[data-pane]")];
+ const charts={composicion:[c1,c3],base100:c2,produccion:c4};
+ const show=k=>{bs.forEach(b=>{const on=b.dataset.tab===k;b.setAttribute("aria-selected",String(on));b.tabIndex=on?0:-1});panes.forEach(p=>p.hidden=p.dataset.pane!==k);
+  if(k==="composicion"&&lastG)drawTM(lastG);if(k==="flujos"&&window.__flujos)requestAnimationFrame(window.__flujos.redraw);if(charts[k])requestAnimationFrame(()=>[].concat(charts[k]).forEach(c=>c.timeScale().fitContent()));
+  try{localStorage.setItem("tab",k)}catch(e){}};
+ bs.forEach((b,i)=>{b.addEventListener("click",()=>show(b.dataset.tab));b.addEventListener("keydown",e=>{if(["ArrowRight","ArrowLeft","ArrowDown","ArrowUp"].includes(e.key)){e.preventDefault();const n=bs[(i+(e.key==="ArrowRight"||e.key==="ArrowDown"?1:bs.length-1))%bs.length];n.focus();show(n.dataset.tab)}})});
+ let k=location.hash.slice(1);if(!bs.some(b=>b.dataset.tab===k)){try{k=localStorage.getItem("tab")}catch(e){k=null}}
+ show(bs.some(b=>b.dataset.tab===k)?k:"composicion")})();
+
+function retheme(){[c1,c2,c3,c4,...(window.__flujos?window.__flujos.charts:[])].forEach(c=>c.applyOptions({layout:{textColor:css("--muted")},grid:{horzLines:{color:css("--grid")}},timeScale:{borderColor:css("--line")}}));setEv(evMode);window.__flujos&&window.__flujos.retheme();CH.forEach(t=>lines[t].applyOptions({color:col(t)}));paintComp();drawMix();drawProd();showLg(L);showLg2(L);document.querySelectorAll(".dot[data-t]").forEach(d=>d.style.background=col(d.dataset.t));document.querySelectorAll(".weight[data-t]").forEach(w=>w.style.setProperty("--wc",col(w.dataset.t)));}
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",retheme);
+new MutationObserver(retheme).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+})();
+</script>
+
+</body></html>
